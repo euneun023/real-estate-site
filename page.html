@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>호텔드림 | 부동산 매매 플랫폼</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* GLOBAL */
+body {
+    margin: 0;
+    background: #fafafa;
+    font-family: Inter, sans-serif;
+    color: #222;
+}
+
+/* 레이아웃 */
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    display: flex;
+    gap: 45px;
+}
+
+/* ===================== HEADER ===================== */
+.hd {
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #e2d6bd;
+    margin-bottom: 35px;
+}
+
+.hd-top {
+    max-width: 1500px;
+    height: 75px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hd-logo img {
+    height: 55px;
+}
+
+.hd-right a {
+    margin-left: 20px;
+    font-size: 14px;
+    color: #444;
+    text-decoration: none;
+}
+.hd-right a:hover { color: #b49762; }
+
+.hd-main-menu {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 14px 0;
+    border-top: 1px solid #e8e2d3;
+}
+.hd-main-menu a {
+    text-decoration: none;
+    font-size: 15px;
+    color: #333;
+}
+.hd-main-menu a:hover {
+    border-bottom: 2px solid #b49762;
+    color: #b49762;
+}
+
+/* ===================== SIDEBAR ===================== */
+.sidebar {
+    width: 250px;
+    position: sticky;
+    top: 40px;
+    height: fit-content;
+}
+.card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 14px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 26px;
+}
+
+.call-title { font-size: 13px; color: #777; }
+.call-number { font-size: 26px; font-weight: 700; margin: 4px 0; }
+.call-desc { font-size: 13px; color: #999; }
+
+/* 방문자 */
+.visit-label { font-size: 14px; color: #666; }
+.visit-today {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 4px 0;
+}
+.visit-total { font-size: 13px; color: #888; }
+
+/* 상담 */
+.input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+    margin-bottom: 12px;
+}
+.btn {
+    width: 100%;
+    padding: 14px;
+    background: #111;
+    border-radius: 12px;
+    color: #fff;
+}
+
+/* ===================== MAIN ===================== */
+.main { flex: 1; }
+
+/* 상단 카테고리 - 유지 */
+.top-categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 35px;
+}
+.top-cat {
+    height: 150px;
+    border-radius: 15px;
+    border: 1px solid #eee;
+    overflow: hidden;
+    position: relative;
+}
+.top-cat img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+.top-cat span {
+    position: absolute;
+    left: 10px; bottom: 12px;
+    background: rgba(0,0,0,0.55);
+    padding: 7px 12px;
+    border-radius: 8px;
+    color: #fff;
+}
+
+/* ===================== AIRBNB 검색 UI ===================== */
+
+/* 전체 래퍼 */
+.search-box-airbnb {
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid #eee;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    margin-bottom: 40px;
+}
+
+/* 상단 라벨들 (에어비앤비 스타일) */
+.search-label-row {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 12px;
+}
+.search-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #777;
+}
+
+/* 입력 칸들 */
+.search-airbnb-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1.3fr 1.3fr 1.3fr 0.8fr;
+    gap: 12px;
+}
+
+.search-input {
+    padding: 15px 14px;
+    background: #fafafa;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+/* 아래 긴 검색창 */
+.search-wide {
+    margin-top: 12px;
+    width: 100%;
+    padding: 15px;
+    font-size: 14px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+}
+
+/* 검색 버튼 */
+.search-btn {
+    width: 100%;
+    background: #00857c;
+    color: #fff;
+    font-size: 16px;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.search-btn:hover { background: #066f66; }
+
+/* ===================== 금액별 검색 박스 ===================== */
+.price-search-box {
+    width: 240px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.price-title {
+    background: #bba57a;
+    color: #fff;
+    padding: 14px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.price-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 14px;
+    border-bottom: 1px solid #f3f3f3;
+    cursor: pointer;
+}
+.price-item:hover { background: #fafafa; }
+.label-badge {
+    background: #f4bd27;
+    color: #fff;
+    padding: 4px 9px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* HOT */
+.section-title { font-size: 22px; font-weight: 700; margin: 30px 0 15px; }
+.hot-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 22px;
+}
+.hot-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 20px;
+}
+.tag { padding: 6px 13px; border-radius: 100px; color:#fff; font-size:12px; }
+.tag-green { background:#14b57a; }
+.tag-red { background:#d44848; }
+
+.hot-title { font-size:17px; font-weight:700; margin-top:6px; }
+.hot-desc { color:#777; font-size:14px; margin-top:4px; }
+
+/* TABLE */
+.table-box {
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    border:1px solid #eee;
+    margin-top:40px;
+}
+.table {
+    width:100%;
+    border-collapse:collapse;
+}
+.table th {
+    text-align:left;
+    padding:12px;
+    border-bottom:1px solid #eee;
+    color:#666;
+}
+.table td {
+    padding:12px;
+    border-bottom:1px solid #f5f5f5;
+}
+
+/* NOTICE */
+.notice-box {
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    border:1px solid #eee;
+    margin-top:40px;
+}
+.notice-item {
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px solid #f3f3f3;
+}
+/* 전체 2열 검색 레이아웃 */
+.search-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin: 40px 0;
+}
+
+/* 왼쪽 75% */
+.search-left {
+    flex: 3;
+}
+
+/* 오른쪽 25% */
+.search-right {
+    flex: 1;
+}
+
+/* 금액별 검색 박스 기본 스타일 개선 (선택 사항) */
+.search-right .price-filter-box {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e5e5e5;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* 반응형 (모바일에서는 세로로 정렬) */
+@media (max-width: 900px) {
+    .search-layout {
+        flex-direction: column;
+    }
+    .search-left, .search-right {
+        flex: none;
+        width: 100%;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<header class="hd">
+    <div class="hd-top">
+        <div class="hd-left">호텔매매 모텔매매 펜션매매 호텔드림</div>
+        <div class="hd-logo"><img src="https://i.imgur.com/18lRzAg.png"></div>
+        <div class="hd-right">
+            <a href="#">로그인</a>
+            <a href="#">회원가입</a>
+        </div>
+    </div>
+
+    <div class="hd-main-menu">
+        <a href="#">호텔·모텔</a>
+        <a href="#">펜션·풀빌라</a>
+        <a href="#">빌딩·상가</a>
+        <a href="#">시행부지</a>
+        <a href="#">기타 부동산</a>
+        <a href="#">고객지원</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="card">
+            <div class="call-title">대표번호</div>
+            <div class="call-number">02-731-6323</div>
+            <div class="call-desc">연중무휴 24시간 상담</div>
+        </div>
+
+        <div class="card">
+            <div class="visit-label">오늘 방문자</div>
+            <div class="visit-today">402명</div>
+            <div class="visit-total">전체 184,624명</div>
+        </div>
+
+        <div class="card">
+            <input class="input" placeholder="이름">
+            <input class="input" placeholder="연락처">
+            <textarea class="input" rows="3" placeholder="문의내용"></textarea>
+            <button class="btn">상담문의 남기기</button>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- 카테고리 -->
+        <div class="top-categories">
+            <div class="top-cat"><img src="https://source.unsplash.com/400x300/?hotel"><span>호텔·모텔</span></div>
+            <div class="top-cat"><img src="https://source.unsplash.com/400x300/?villa"><span>펜션·풀빌라</span></div>
+            <div class="top-cat"><img src="https://source.unsplash.com/400x300/?building"><span>빌딩</span></div>
+            <div class="top-cat"><img src="https://source.unsplash.com/400x300/?land"><span>부지</span></div>
+        </div>
+
+        <!-- Airbnb 검색 UI -->
+<div class="search-layout">
+
+    <div class="search-left">
+        <div class="search-box-airbnb">
+
+            <div class="search-label-row">
+                <div class="search-label">구분</div>
+                <div class="search-label">거래형태</div>
+                <div class="search-label">시/도</div>
+                <div class="search-label">지역</div>
+                <div class="search-label">검색</div>
+            </div>
+
+            <div class="search-airbnb-grid">
+                <select class="search-input"><option>구분</option></select>
+                <select class="search-input"><option>매매/임대</option></select>
+                <select class="search-input"><option>시/도</option></select>
+                <select class="search-input"><option>읍/면/동</option></select>
+                <button class="search-btn">검색 🔍</button>
+            </div>
+
+            <input type="text" class="search-wide" placeholder="매물번호 / 지역명 / 키워드를 입력하세요">
+
+        </div>
+    </div>
+
+    <div class="search-right">
+        <!-- 금액별 검색 박스 -->
+        <div class="price-filter-box">
+            <div class="price-title">금액별 검색</div>
+            <div class="price-item"><span class="label-badge">매매</span><span>20억 미만</span></div>
+            <div class="price-item"><span class="label-badge">매매</span><span>20억 이상</span></div>
+            <div class="price-item"><span class="label-badge">매매</span><span>50억 이상</span></div>
+            <div class="price-item"><span class="label-badge">매매</span><span>100억 이상</span></div>
+            <div class="price-item"><span class="label-badge">매매</span><span>300억 이상</span></div>
+        </div>
+    </div>
+
+</div>
+        <!-- HOT -->
+        <div class="section-title">HOT 매물</div>
+        <div class="hot-grid">
+            <div class="hot-card">
+                <span class="tag tag-green">임대</span>
+                <div class="hot-title">경북 김천시 — 준공된 모텔 판매</div>
+                <div class="hot-desc">보증금 1억 / 월세 330만 / 객실 21</div>
+            </div>
+            <div class="hot-card">
+                <span class="tag tag-red">매매</span>
+                <div class="hot-title">경기도 용인시 모텔 매매</div>
+                <div class="hot-desc">매매 16억 / 실입금 3억 / 객실 15</div>
+            </div>
+            <div class="hot-card">
+                <span class="tag tag-green">임대</span>
+                <div class="hot-title">충북 옥천군 모텔 · 즉시 운영</div>
+                <div class="hot-desc">보증금 2억 / 월세 250만 / 객실 38</div>
+            </div>
+        </div>
+
+        <!-- 기타 -->
+        <div class="table-box">
+            <div class="section-title">기타 매물</div>
+            <table class="table">
+                <thead><tr><th>유형</th><th>매물명</th><th>지역</th><th>금액</th><th>분류</th></tr></thead>
+                <tbody>
+                    <tr><td>매매</td><td>동탄 모텔 매매</td><td>경기</td><td>32억</td><td>모텔</td></tr>
+                    <tr><td>임대</td><td>청주 모텔 임대</td><td>충북</td><td>보증 1억/월세350</td><td>모텔</td></tr>
+                    <tr><td>매매</td><td>강원 리조트</td><td>강원</td><td>42억</td><td>리조트</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 공지 -->
+        <div class="notice-box">
+            <div class="section-title">공지사항</div>
+            <div class="notice-item"><span>호텔 매매 상담 증가</span><span>24.02.10</span></div>
+            <div class="notice-item"><span>성수기 매물 업데이트</span><span>24.01.08</span></div>
+            <div class="notice-item"><span>신규 리조트 매물 등록</span><span>23.12.26</span></div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

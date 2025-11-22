@@ -1,0 +1,55 @@
+✅ 1. 이 태그들이 “뭐하는 놈들”인가?
+✔ meta description
+<meta name="description" content="호텔 매매, 모텔 매매, 펜션·풀빌라 매매, 빌딩·상가·부지 매물 검색. 호텔모텔마당 — 전국 숙박업 매매·임대 전문 중개 플랫폼.">
+
+
+➡️ 구글 검색결과에 노출되는 너의 사이트 설명.
+
+예:
+구글에서 사이트 뜰 때
+호텔 매매, 모텔 매매… 전문 플랫폼
+이런 문구가 뜸.
+
+✔ CTR(클릭률) 증가
+✔ 검색엔진이 사이트 내용을 이해하는 데 도움
+
+✔ Open Graph (카톡, SNS 공유 시 나오는 내용)
+
+카카오톡 / 페이스북 / 문자 링크 공유 할 때
+미리보기 박스가 뜨잖아?
+
+그걸 조절하는 태그가 OG.
+
+<meta property="og:title" content="호텔모텔마당 | 호텔·모텔·펜션 전문 매매 플랫폼">
+<meta property="og:description" content="전국 숙박업 부동산 매매·임대 전문 정보 제공">
+<meta property="og:type" content="website">
+
+
+✔ 카톡 공유 시 예쁘고 깔끔하게 보임
+✔ SNS 공유 최적화
+✔ 브랜드 신뢰도 증가
+
+✔ keywords
+<meta name="keywords" content="호텔 매매, 모텔 매매, 펜션 매매, 풀빌라 매매, 빌딩 매매, 상가 매매, 숙박업 부동산, 임대, 투자매물, 상권부동산">
+
+
+➡️ 예전 SEO 시절엔 강력했는데,
+현재 구글은 meta keywords를 거의 무시
+하지만 네이버는 여전히 참고함.
+
+✔ 네이버 SEO 영향
+✔ 구글에서는 영향 극소 (거의 없음)
+
+✔ Local SEO (지역 기반 검색 최적화)
+<meta name="geo.region" content="KR">
+<meta name="geo.placename" content="South Korea">
+<meta name="geo.position" content="37.5665;126.9780">
+<meta name="ICBM" content="37.5665, 126.9780">
+
+
+➡️ “이 사이트는 한국 기반 서비스다” 라고 검색엔진에 알리는 용도.
+
+✔ “호텔 매매 한국” 같은 검색에서 미세하게 도움
+✔ 지도 기반 SEO 신호로 활용됨
+
+큰 차이는 아니지만 지역 기반 사이트엔 추천되는 설정.

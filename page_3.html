@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>호텔모텔마당 | 부동산 매매 플랫폼</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+/* GLOBAL */
+body {
+    margin: 0;
+    background: #fafafa;
+    font-family: Inter, sans-serif;
+    color: #222;
+}
+
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    display: flex;
+    gap: 45px;
+}
+
+/* ===================== HEADER ===================== */
+.hd {
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #e2d6bd;
+    margin-bottom: 35px;
+}
+
+.hd-top {
+    max-width: 1500px;
+    height: 75px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hd-logo img {
+    height: 55px;
+}
+
+.hd-right a {
+    margin-left: 20px;
+    font-size: 14px;
+    color: #444;
+    text-decoration: none;
+}
+.hd-right a:hover { color: #b49762; }
+
+.hd-main-menu {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 14px 0;
+    border-top: 1px solid #e8e2d3;
+}
+.hd-main-menu a {
+    text-decoration: none;
+    font-size: 15px;
+    color: #333;
+}
+.hd-main-menu a:hover {
+    border-bottom: 2px solid #b49762;
+    color: #b49762;
+}
+
+/* ===================== SIDEBAR ===================== */
+/* ===================== SIDEBAR ===================== */
+.sidebar {
+    width: 260px;
+}
+
+/* 공통 카드 박스 */
+.card {
+    background: #fff;
+    padding: 26px 24px;
+    border-radius: 18px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    margin-bottom: 28px;
+}
+
+
+/* ===== 텍스트 스타일링(이미지와 동일) ===== */
+
+.call-title {
+    font-size: 13px;
+    color: #8d8d8d;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+}
+
+.call-number {
+    font-size: 24px;
+    font-weight: 700;
+    color: #194d42; /* 고급스러운 다크그린 계열 */
+    margin-bottom: 8px;
+}
+
+.call-desc {
+    font-size: 13px;
+    color: #9a9a9a;
+    line-height: 1.5;
+}
+
+
+/* 오늘 방문자 카드 */
+.visit-label {
+    font-size: 13px;
+    color: #8d8d8d;
+    margin-bottom: 8px;
+}
+
+.visit-today {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1f332f;
+}
+
+.visit-total {
+    font-size: 13px;
+    color: #9b9b9b;
+    margin-top: 6px;
+}
+
+
+/* 입력 폼 */
+.input {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: #f7f7f7;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* 상담문의 버튼 */
+.btn {
+    width: 100%;
+    padding: 14px;
+    background: #194d42;
+    border-radius: 14px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover {
+    background: #163e35;
+}
+/* ─────────────────────────────────────
+   사이드바 내부 요소 중앙정렬
+   ───────────────────────────────────── */
+.sidebar .card {
+    text-align: center !important;   /* 텍스트와 버튼 모두 중앙 */
+}
+
+/* 대표번호 숫자 */
+.sidebar .call-number {
+    text-align: center !important;
+}
+
+/* 방문자 숫자 등 */
+.sidebar .visit-label,
+.sidebar .visit-today,
+.sidebar .visit-total {
+    text-align: center !important;
+}
+
+/* 입력폼을 중앙정렬 */
+.sidebar .input {
+    text-align: center !important;
+}
+
+/* 버튼도 가운데 정렬 */
+.sidebar .btn {
+    display: block;
+    width: 100%;
+    text-align: center !important;
+    margin: 0 auto;
+}
+
+/* ===================== MAIN ===================== */
+.main { flex: 1; }
+
+/* 카테고리 */
+.top-categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 35px;
+}
+.top-cat {
+    height: 150px;
+    border-radius: 15px;
+    border: 1px solid #eee;
+    overflow: hidden;
+    position: relative;
+}
+.top-cat img { width: 100%; height: 100%; object-fit: cover; }
+.top-cat span {
+    position: absolute;
+    left: 10px; bottom: 12px;
+    background: rgba(0,0,0,0.55);
+    padding: 7px 12px;
+    border-radius: 8px;
+    color: #fff;
+}
+
+/* ===================== AIRBNB 검색 박스 (오른쪽) ===================== */
+.search-box {
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid #eee;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    margin-bottom: 40px;
+}
+
+.search-row {
+    display: flex;
+    gap: 12px;
+}
+
+.search-row select {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+    font-size: 14px;
+}
+
+.keyword-input {
+    margin-top: 14px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+}
+
+.btn-search {
+    background: #00887a;
+    color: #fff;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+/* ===================== 금액별 검색 (사이드바 카드로 이동) ===================== */
+.filter-title {
+    background: #c7b389;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.filter-item {
+    padding: 10px 4px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+.filter-item:last-child { border-bottom: none; }
+
+.label-badge {
+    background: #ffcc33;
+    color: #333;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+/*녹색
+
+.filter-title {
+    background: #3c5f4b;     
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.filter-item {
+    padding: 12px 6px;
+    border-bottom: 1px solid #e6efe8;   
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.label-badge {
+    background: #d3e4cf;
+    color: #2d4a3a;
+    padding: 3px 9px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid #c4d8c3;
+}
+*/
+
+/* HOT */
+.section-title { font-size: 22px; font-weight: 700; margin: 30px 0 15px; }
+.hot-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 22px;
+}
+.hot-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 20px;
+}
+.tag { padding: 6px 13px; border-radius: 100px; color:#fff; font-size:12px; }
+.tag-green { background:#14b57a; }
+.tag-red { background:#d44848; }
+
+.hot-title { font-size:17px; font-weight:700; margin-top:6px; }
+.hot-desc { color:#777; font-size:14px; margin-top:4px; }
+
+/* TABLE */
+.table-box {
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    border:1px solid #eee;
+    margin-top:40px;
+}
+
+.table { width:100%; border-collapse:collapse; }
+.table th { text-align:left; padding:12px; border-bottom:1px solid #eee; color:#666; }
+.table td { padding:12px; border-bottom:1px solid #f5f5f5; }
+
+/* NOTICE */
+.notice-box {
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    border:1px solid #eee;
+    margin-top:40px;
+}
+.notice-item {
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px solid #f3f3f3;
+}
+/* ===== 기관 로고 ===== */
+.footer-logos {
+    background: #ffffff;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+.footer-logos-inner {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+.logo-item img {
+    height: 45px;
+    opacity: 0.85;
+    transition: 0.2s;
+}
+.logo-item img:hover {
+    opacity: 1;
+}
+
+/* ===== FOOTER ===== */
+/* ===== FOOTER 전체 영역 ===== */
+.footer {
+    background: #f4f6f4; /* 아주 옅은 그린 */
+    color: #4a4a4a;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 60px;
+    border-top: 1px solid #d7e2d7; /* 연그린 구분선 */
+}
+
+/* 왼쪽 영역 */
+.footer-left {
+    max-width: 60%;
+}
+
+.footer-logo {
+    height: 40px;
+    filter: brightness(0) saturate(0%) invert(15%) sepia(25%) saturate(500%) hue-rotate(84deg) brightness(93%);
+}
+
+.footer-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #3c5f4b; /* 숲초록 포인트 */
+}
+
+.footer-info {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+/* 오른쪽 영역 */
+.footer-right {
+    text-align: right;
+}
+
+.footer-call-title {
+    font-size: 13px;
+    color: #3c5f4b; /* 포인트 */
+}
+
+.footer-call-number {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 8px 0 20px;
+    color: #2f4637;
+}
+
+/* 카카오 버튼 */
+.kakao-btn {
+    background: #ffe500;
+    color: #000;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    display: inline-block;
+    text-decoration: none;
+}
+.kakao-btn:hover {
+    background: #ffdb00;
+}
+
+.social_icon_zone {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+}
+
+.social_icon_zone div {
+    background: #ffffff;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.social_icon_zone div:hover {
+    transform: translateY(-3px);
+}
+
+.social_icon_zone h5 {
+    margin: 0;
+    padding-top: 3px;
+    font-size: 11px;
+    color: #2f4637;
+    font-weight: 600;
+}
+
+</style>
+</head>
+<body>
+
+<header class="hd">
+    <div class="hd-top">
+        <div class="hd-left">호텔매매 모텔매매 펜션매매 호텔모텔마당</div>
+        <div class="hd-logo"><img src="https://i.imgur.com/18lRzAg.png"></div>
+        <div class="hd-right">
+            <a href="#">로그인</a>
+            <a href="#">회원가입</a>
+        </div>
+    </div>
+
+    <div class="hd-main-menu">
+        <a href="#">호텔·모텔</a>
+        <a href="#">펜션·풀빌라</a>
+        <a href="#">빌딩·상가</a>
+        <a href="#">시행부지</a>
+        <a href="#">기타 부동산</a>
+        <a href="#">고객지원</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- SIDEBAR LEFT -->
+    <div class="sidebar">
+
+        <div class="card">
+            <div class="call-title">대표번호</div>
+            <div class="call-number">02-731-6323</div>
+            <div class="call-desc">연중무휴 24시간 상담</div>
+        </div>
+
+        <div class="card">
+            <div class="visit-label">오늘 방문자</div>
+            <div class="visit-today">402명</div>
+            <div class="visit-total">전체 184,624명</div>
+        </div>
+
+        <div class="card">
+            <input class="input" placeholder="이름">
+            <input class="input" placeholder="연락처">
+            <textarea class="input" rows="3" placeholder="문의내용"></textarea>
+            <button class="btn">상담문의 남기기</button>
+        </div>
+
+        <!-- 금액별 검색 (사이드바로 이동) -->
+        <div class="card">
+            <div class="filter-title">금액별 검색</div>
+
+            <div class="filter-item"><span class="label-badge">매매</span> 20억 미만</div>
+            <div class="filter-item"><span class="label-badge">매매</span> 20억 이상</div>
+            <div class="filter-item"><span class="label-badge">매매</span> 50억 이상</div>
+            <div class="filter-item"><span class="label-badge">매매</span> 100억 이상</div>
+            <div class="filter-item"><span class="label-badge">매매</span> 300억 이상</div>
+        </div>
+
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- 카테고리 -->
+        <div class="top-categories">
+            <div class="top-cat"><img src="https://source.unsplash.com/400x300/?hotel"><span>호텔·모텔</span></div>
+            <div class="top-cat"><img src="https://source.unsplash.com/400x300/?villa"><span>펜션·풀빌라</span></div>
+            <div class="top-cat"><img src="https://source.unsplash.com/400x300/?building"><span>빌딩</span></div>
+            <div class="top-cat"><img src="https://source.unsplash.com/400x300/?land"><span>부지</span></div>
+        </div>
+
+        <!-- 검색박스 -->
+        <div class="search-box">
+            <div class="search-row">
+                <select><option>구분</option></select>
+                <select><option>매매/임대</option></select>
+                <select><option>시/도</option></select>
+                <select><option>읍/면/동</option></select>
+                <button class="btn-search">검색 🔍</button>
+            </div>
+            <input type="text" class="keyword-input" placeholder="매물번호 / 지역명 / 키워드를 입력하세요">
+        </div>
+
+        <!-- HOT -->
+        <div class="section-title">HOT 매물</div>
+        <div class="hot-grid">
+            <div class="hot-card">
+                <span class="tag tag-green">임대</span>
+                <div class="hot-title">경북 김천시 — 준공된 모텔 판매</div>
+                <div class="hot-desc">보증금 1억 / 월세 330만 / 객실 21</div>
+            </div>
+            <div class="hot-card">
+                <span class="tag tag-red">매매</span>
+                <div class="hot-title">경기도 용인시 모텔 매매</div>
+                <div class="hot-desc">매매 16억 / 실입금 3억 / 객실 15</div>
+            </div>
+            <div class="hot-card">
+                <span class="tag tag-green">임대</span>
+                <div class="hot-title">충북 옥천군 모텔 · 즉시 운영</div>
+                <div class="hot-desc">보증금 2억 / 월세 250만 / 객실 38</div>
+            </div>
+        </div>
+
+        <!-- 기타 -->
+        <div class="table-box">
+            <div class="section-title">기타 매물</div>
+            <table class="table">
+                <thead><tr><th>유형</th><th>매물명</th><th>지역</th><th>금액</th><th>분류</th></tr></thead>
+                <tbody>
+                    <tr><td>매매</td><td>동탄 모텔 매매</td><td>경기</td><td>32억</td><td>모텔</td></tr>
+                    <tr><td>임대</td><td>청주 모텔 임대</td><td>충북</td><td>보증 1억/월세350</td><td>모텔</td></tr>
+                    <tr><td>매매</td><td>강원 리조트</td><td>강원</td><td>42억</td><td>리조트</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 공지 -->
+        <div class="notice-box">
+            <div class="section-title">공지사항</div>
+            <div class="notice-item"><span>호텔 매매 상담 증가</span><span>24.02.10</span></div>
+            <div class="notice-item"><span>성수기 매물 업데이트</span><span>24.01.08</span></div>
+            <div class="notice-item"><span>신규 리조트 매물 등록</span><span>23.12.26</span></div>
+        </div>
+
+    </div>
+</div>
+<!-- 기관 로고 슬라이드 -->
+<div class="footer-logos">
+    <div class="footer-logos-inner">
+
+        <div class="logo-item"><img src="로고1.png" alt="국토교통부"></div>
+        <div class="logo-item"><img src="로고2.png" alt="대한민국 법원 인터넷 등기소"></div>
+        <div class="logo-item"><img src="로고3.png" alt="SEE:REAL"></div>
+        <div class="logo-item"><img src="로고4.png" alt="국토교통부 실거래가공개시스템"></div>
+        <div class="logo-item"><img src="로고5.png" alt="wetax"></div>
+        <div class="logo-item"><img src="로고6.png" alt="한국감정원 부동산통계정보"></div>
+
+    </div>
+</div>
+<div class="social_icon_zone">
+
+    <div onclick="$.post('/etc/script_call/kakao_open');window.open('https://open.kakao.com/o/svN1lbVc','_blank');" class="kakao_open">
+        <img src="/static/img/add/icon_kakaotalk_100.png" width="50" class="main_sns_icon" alt="소셜공유">
+        <h5>오픈채팅</h5>
+    </div>
+
+    <div onmousedown="callHpTelScript();" ontouchstart="callHpTelScript();" onclick="location.href='tel:02-731-6323'">
+        <img src="/static/img/add/icon_callW.png" width="30" alt="전화">
+        <h5>전화</h5>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <div class="footer-left">
+        <div class="footer-brand">
+            <img src="logo.png" class="footer-logo">
+            <div class="footer-name">호텔모텔마당 HOTEL DREAM</div>
+        </div>
+
+        <p class="footer-info">
+            회사명 : 더글로벌코리아 부동산중개법인 주식회사<br>
+            대표자 : 김경용 ㅣ 주소 : 서울특별시 중구 남대문로117, 7층 (다동 동아빌딩)<br>
+            부동산 번호 : 11140-2018-00053<br>
+            전화 : 02-731-6323 ㅣ 팩스 : 02-744-4567<br>
+            부동산에 기술을 더하는 사람들 © BUGISA, Inc. All rights reserved.
+        </p>
+    </div>
+
+    <div class="footer-right">
+        <div class="footer-call-title">대표전화 CALL CENTER</div>
+        <div class="footer-call-number">02-731-6323</div>
+
+<!--        <a href="https://pf.kakao.com" class="kakao-btn">카카오톡 상담</a> -->
+    </div>
+</footer>
+
+</body>
+</html>

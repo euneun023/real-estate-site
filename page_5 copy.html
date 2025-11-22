@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>모텔코리아 | 호텔·모텔·펜션·부동산 매매 플랫폼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="모텔코리아는 호텔·모텔·펜션·부지·빌딩 등 수익형 부동산 매매 및 임대에 특화된 플랫폼입니다. 지역·금액·유형별 쉽고 빠른 검색으로 전국 숙박업 매물을 한눈에 확인하세요.">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      /* 메인 컬러 시스템 (Airbnb + Forest Green 믹스) */
+      --green-main: #2f5d50;
+      --green-deep: #1e3d33;
+      --green-soft: #e8f3ef;
+      --mint: #2ac1a0;
+
+      --sand: #f7f2e9;
+      --bg: #fafafa;
+      --white: #ffffff;
+      --text-main: #222222;
+      --text-sub: #777777;
+      --line: #e4e4e4;
+
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.10);
+      --radius-card: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ================= HEADER ================= */
+/* ===== 모던 헤더 디자인 ===== */
+.modern-header {
+  background: #ffffff;
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  
+  /* 부드러운 그림자 */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
+  /* 나타날 때 모션 효과 */
+  animation: fadeSlideDown 0.55s ease;
+}
+
+/* Fade + Slide Down Motion */
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 로고 영역 */
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 로고 이미지 */
+.logo-icon {
+  width: 55px;
+  height: auto;
+  border-radius: 6px;
+
+  /* 로고 미세 3D 효과 */
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.08));
+}
+
+/* 브랜드 텍스트 */
+.brand-text-zone {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text-main {
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 2px;
+
+  /* 모바일에서 풍부하게 보이도록 */
+  letter-spacing: -0.5px;
+}
+
+.sub-headline {
+  font-size: 13.5px;
+  color: #555;
+  font-weight: 500;
+  margin-top: 0;
+  line-height: 1.3;
+  max-width: 320px;
+}
+
+/* ========== 모바일 반응형 적용 ========== */
+@media (max-width: 768px) {
+
+  .modern-header {
+    padding: 12px 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+
+  .logo-icon {
+    width: 48px;
+  }
+
+  .logo-text-main {
+    font-size: 18px;
+  }
+
+  .sub-headline {
+    font-size: 12.5px;
+    max-width: 240px;
+    line-height: 1.32;
+  }
+}
+
+/* 초소형 모바일 (아이폰 SE 같은 사이즈) */
+@media (max-width: 430px) {
+
+  .logo-area {
+    gap: 8px;
+  }
+
+  .logo-icon {
+    width: 42px;
+  }
+
+  .logo-text-main {
+    font-size: 17px;
+  }
+
+  .sub-headline {
+    font-size: 11.5px;
+    max-width: 200px;
+  }
+}
+
+    .header-wrap {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-top {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .header-top-right a {
+      margin-left: 16px;
+    }
+
+    .header-top-right a:hover {
+      color: var(--green-main);
+      font-weight: 500;
+    }
+
+    .header-main {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 12px 24px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .logo-area > div:last-child {
+      text-align: center;
+    }
+
+
+    /*
+    .main-nav {
+      display: flex;
+      justify-content: center;
+      gap: 62px;
+      font-size: 16px;
+      width: 100%;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      margin-top: 4px;
+      text-align: center;
+    }
+*/
+.main-nav-row {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      border-top: 1px solid var(--line);
+      /* padding-top: 12px; */
+      padding: 12px 40px 0; /* ← 좌우 24px 여백 추가 */
+
+      margin-top: 4px;
+    }
+
+    .main-nav {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      gap: 62px; 
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .nav-blog-link {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-left: auto;
+      transition: color 0.15s ease;
+    }
+
+    .nav-blog-link:hover {
+      color: var(--green-main);
+      text-decoration: underline;
+    }
+
+
+    .logo-text-main {
+      font-size: 2.4rem; /* h1보다 크게 */
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+.logo-icon {
+  width: 64px;       /* 필요 시 크기 조절 */
+  height: 64px;
+  object-fit: contain;
+}
+/*
+    .header-main {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 12px 24px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #c9b48a, #f1e2c2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .logo-text-main {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .logo-text-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 32px;
+      font-size: 14px;
+    }
+*/
+    .main-nav a {
+      padding-bottom: 6px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .main-nav a:hover {
+      color: var(--green-main);
+      border-bottom-color: var(--green-main);
+      font-weight: 500;
+    }
+
+    /* ================= TOP INSTITUTION LOGOS ================= */
+
+    .inst-logos {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      padding: 16px 0;
+    }
+
+    .inst-logos-inner {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      overflow-x: auto;
+    }
+
+    .inst-logo-item {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid #f0f0f0;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      white-space: nowrap;
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+    .sub-headline {
+      color: var(--text-sub);
+      font-weight: 500;
+      margin: 4px 0 0;   /* 위/아래 여백 축소 */
+      line-height: 1.3;   /* 필요 시 간격 조정 */
+    }
+    /* ================= LAYOUT ================= */
+
+    .page-container {
+      max-width: 1480px;
+      margin: 32px auto 40px;
+      padding: 0 24px 40px;
+      display: flex;
+      gap: 32px;
+    }
+
+    .sidebar {
+      width: 260px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .main {
+      flex: 1;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      padding: 20px 18px;
+    }
+
+    /* ================= SIDEBAR ================= */
+
+    .call-title {
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .call-number {
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 6px;
+      margin-bottom: 4px;
+      color: var(--green-deep);
+    }
+
+    .call-desc {
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .visit-label {
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .visit-today {
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+
+    .visit-total {
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .input {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 12px;
+      border: 1px solid #dddddd;
+      background: var(--beige, #f9f6f0);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    textarea.input {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      background: var(--green-main);
+      color: #ffffff;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--green-deep);
+      transform: translateY(-1px);
+    }
+
+    /* 금액별 검색 */
+
+    .price-title {
+      text-align: center;
+      background: var(--green-main);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px;
+      border-radius: 12px;
+      margin: -4px -4px 12px;
+    }
+
+    .price-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 4px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .price-item:last-child {
+      border-bottom: none;
+    }
+
+    .label-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--green-soft);
+      color: var(--green-deep);
+      border: 1px solid #cde2db;
+    }
+
+    .price-item:hover {
+      background: #f8fbfa;
+    }
+/* ─────────────────────────────────────
+   사이드바 내부 요소 중앙정렬
+   ───────────────────────────────────── */
+.sidebar .card {
+    text-align: center !important;   /* 텍스트와 버튼 모두 중앙 */
+}
+
+/* 대표번호 숫자 */
+.sidebar .call-number {
+    text-align: center !important;
+}
+
+/* 방문자 숫자 등 */
+.sidebar .visit-label,
+.sidebar .visit-today,
+.sidebar .visit-total {
+    text-align: center !important;
+}
+
+/* 입력폼을 중앙정렬 */
+.sidebar .input {
+    text-align: center !important;
+}
+
+/* 버튼도 가운데 정렬 */
+.sidebar .btn {
+    display: block;
+    width: 100%;
+    text-align: center !important;
+    margin: 0 auto;
+}
+
+    /* ================= MAIN ================= */
+
+    /* 상단 카테고리 */
+
+    .top-categories {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+    .top-cat {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #f4f4f4;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  aspect-ratio: 1 / 1;          /* 정사각형 비율 */
+}
+/* 자세히 보기 → 추가 */
+.top-cat::after {
+      content: "자세히 보기 →";
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      pointer-events: none;
+    }
+/* (옵션) aspect-ratio 미지원 브라우저 대비 */
+.top-cat::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+.top-cat > * {
+  position: absolute;
+  inset: 0;
+}
+.top-cat-label {
+  align-self: flex-end;
+  padding: 10px 12px;
+  font-size: 16px;       /* 기존보다 크게 */
+  font-weight: 700;      /* Bold */
+ /*  background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); */
+ background: linear-gradient(to top, rgba(255, 255, 255, 0.5), transparent);
+}
+
+.top-cat-img {
+    background-size: cover;
+    background-position: center;
+  }
+    /*
+    .top-cat {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #f4f4f4;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      cursor: pointer;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .top-cat-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.8);
+    }
+
+    .top-cat-label {
+      position: relative;
+      z-index: 1;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+    }
+*/
+    /* 검색 박스 */
+
+    .search-box {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 22px 22px 18px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 34px;
+    }
+
+    .search-label-row {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .search-row select {
+      flex: 1;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid #dddddd;
+      background: var(--sand);
+      font-size: 13px;
+    }
+
+    .btn-search {
+      padding: 0 22px;
+      border-radius: 14px;
+      background: var(--mint);
+      color: #ffffff;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+
+    .btn-search:hover {
+      background: #23a58a;
+    }
+
+    .keyword-input {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid #dddddd;
+      background: #f7f7f7;
+      font-size: 13px;
+    }
+
+    .listing-number-box {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #f1f1f1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .listing-number-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .listing-number-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .listing-number-row select {
+      flex: 1;
+      background: var(--sand);
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid #dddddd;
+      background: var(--sand);
+      font-size: 13px;
+    }
+    .listing-number-row input {
+      flex: 3;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid #dddddd;
+      background: var(--sand);
+      font-size: 13px;
+    }
+
+    .listing-number-row input {
+      background: #ffffff;
+    }
+
+    .btn-listing-search {
+      padding: 0 22px;
+      border-radius: 14px;
+      background: var(--green-main);
+      color: #ffffff;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-listing-search:hover {
+      background: var(--green-deep);
+    }
+    /* 섹션 제목 */
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 10px 0 14px;
+    }
+
+    .section-title span {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-left: 6px;
+    }
+    .seo-text p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    /* HOT 매물 */
+
+    .hot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .hot-card {
+      background: var(--white);
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      padding: 18px 16px;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      font-size: 13px;
+    }
+
+    .hot-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .tag-green {
+      background: var(--green-main);
+    }
+
+    .tag-red {
+      background: #e05b4f;
+    }
+
+    .hot-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 8px;
+      margin-bottom: 4px;
+    }
+
+    .hot-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 4px;
+    }
+
+    .hot-phone {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green-deep);
+    }
+
+    /* 기타 매물 테이블 */
+
+    .table-box {
+      margin-top: 32px;
+      background: var(--white);
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      padding: 18px 18px 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 10px 8px;
+      border-bottom: 1px solid #f1f1f1;
+      text-align: left;
+    }
+
+    th {
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    /* 공지사항 */
+
+    .notice-box {
+      margin-top: 32px;
+      background: var(--white);
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      padding: 18px;
+    }
+
+    .notice-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #f1f1f1;
+      font-size: 13px;
+    }
+
+    .notice-item:last-child {
+      border-bottom: none;
+    }
+
+    .notice-date {
+      color: var(--text-sub);
+      font-size: 12px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    .footer {
+      background: #f3f1eb;
+      border-top: 1px solid #ded7c4;
+      padding: 28px 24px 34px;
+      color: var(--text-main);
+    }
+
+    .footer-inner {
+      max-width: 1480px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-left {
+      max-width: 70%;
+      font-size: 13px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .footer-logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #c9b48a, #f1e2c2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .footer-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--green-deep);
+    }
+
+    .footer-info {
+      margin: 0;
+      line-height: 1.8;
+      color: var(--text-sub);
+    }
+
+    .footer-right {
+      text-align: right;
+      font-size: 13px;
+    }
+
+    .footer-call-title {
+      color: var(--green-main);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .footer-call-number {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--green-deep);
+      margin-bottom: 10px;
+    }
+
+    .kakao-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: #ffe812;
+      color: #381e1f;
+      font-weight: 600;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    /* 기관로고 (footer 위에) */
+
+    .footer-logos {
+      background: var(--white);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0;
+    }
+
+    .footer-logos-inner {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      overflow-x: auto;
+    }
+
+    .footer-logo-chip {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid #f0f0f0;
+      background: #ffffff;
+      font-size: 12px;
+      color: var(--text-sub);
+      white-space: nowrap;
+    }
+
+    /* ================= FLOATING SOCIAL ================= */
+
+    .social_icon_zone {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 100;
+    }
+
+    .social_icon_zone div {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--white);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .social_icon_zone div:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+
+    .social_icon_zone h5 {
+      margin: 2px 0 0;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green-deep);
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 1024px) {
+      .page-container {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .sidebar .card {
+        flex: 1 1 240px;
+      }
+      .hot-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+      .header-main {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .main-nav {
+        flex-wrap: wrap;
+        row-gap: 6px;
+      }
+      .footer-inner {
+        flex-direction: column;
+        text-align: left;
+      }
+      .footer-right {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .top-categories {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+      .hot-grid {
+        grid-template-columns: 1fr;
+      }
+      .search-row {
+        flex-direction: column;
+      }
+      .btn-search {
+        width: 100%;
+      }
+      .sidebar {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header-wrap">
+    <div class="header-top">
+      <!-- <div>호텔매매 모텔매매 펜션매매 부지매매 빌딩매매 상가매매</div> -->
+       <div>호텔 · 모텔 · 펜션 · 부지 · 빌딩 · 상가   매매   임대</div>
+       <!--  -->
+      <div class="header-top-right">
+        <a href="#">로그인</a>
+        <a href="#">회원가입</a>
+      </div>
+    </div>
+    <header class="header-main modern-header">
+      <div class="logo-area">
+        <img src="hm-logo.png" alt="모텔코리아 로고" class="logo-icon" />
+    
+        <div class="brand-text-zone">
+          <div class="logo-text-main">모텔코리아</div>
+          <h1 class="sub-headline">
+            호텔·모텔·펜션·빌딩·부지 매매·임대 전문 부동산 플랫폼
+          </h1>
+        </div>
+      </div>
+    </header>
+    
+    <!--
+    <div class="header-main">
+      <div class="logo-mark"></div>
+      <div class="logo-area">
+        <img src="hm-logo.png" alt="모텔코리아 로고" class="logo-icon" />
+        <div>
+          <div class="logo-text-main">모텔코리아</div>
+    
+
+          <h1 class="sub-headline">
+            호텔·모텔·펜션·빌딩·부지 매매·임대 전문 부동산 플랫폼
+          </h1>
+        </div>
+      </div>
+    -->
+    <div class="main-nav-row">
+      <nav class="main-nav" aria-label="주요 카테고리">
+        <a href="#">호텔·모텔</a>
+        <a href="#">펜션·풀빌라</a>
+        <a href="#">빌딩·상가</a>
+        <a href="#">시행부지</a>
+        <a href="#">기타 부동산</a>
+        <a href="#">고객지원</a>
+      </nav> 
+       <a class="nav-blog-link" href="https://blog.example.com" target="_blank" rel="noreferrer">블로그 더보기</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- INST LOGOS (TOP STRIP) 
+  <div class="inst-logos">
+    <div class="inst-logos-inner">
+      <div class="inst-logo-item">국토교통부</div>
+      <div class="inst-logo-item">대한민국 법원 인터넷등기소</div>
+      <div class="inst-logo-item">부동산 실거래가 공개시스템</div>
+      <div class="inst-logo-item">SEE:REAL 부동산 정보</div>
+      <div class="inst-logo-item">지방세 wetax</div>
+      <div class="inst-logo-item">한국부동산원 통계정보</div>
+    </div>
+  </div>
+-->
+  <!-- PAGE LAYOUT -->
+  <div class="page-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="card">
+        <div class="visit-label">오늘 방문자</div>
+        <div class="visit-today">402명</div>
+        <div class="visit-total">전체 184,624명</div>
+      </div>
+
+      <div class="card">
+        <div class="call-title">대표번호 CALL CENTER</div>
+        <div class="call-number">02-731-6323</div>
+        <div class="call-desc">연중무휴 24시간 상담</div>
+      </div>
+
+      <div class="card">
+        <input class="input" placeholder="이름" />
+        <input class="input" placeholder="연락처" />
+        <textarea class="input" placeholder="문의내용"></textarea>
+        <button class="btn-primary">상담문의 남기기</button>
+      </div>
+
+      <div class="card">
+        <div class="price-title">금액별 검색</div>
+        <div class="price-item"><span class="label-badge">매매</span> 20억 미만</div>
+        <div class="price-item"><span class="label-badge">매매</span> 20억 이상</div>
+        <div class="price-item"><span class="label-badge">매매</span> 50억 이상</div>
+        <div class="price-item"><span class="label-badge">매매</span> 100억 이상</div>
+        <div class="price-item"><span class="label-badge">매매</span> 300억 이상</div>
+      </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+      <!-- TOP CATEGORIES -->
+      <section class="top-categories" aria-label="주요 매물 카테고리">
+        <div class="top-cat">
+           <div class="top-cat-img" style="background-image:url('main_hotel.png');"></div>
+          <div class="top-cat-label">호텔·모텔</div>
+        </div>
+        <div class="top-cat">
+          <div class="top-cat-img" style="background-image:url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="top-cat-label">펜션·풀빌라</div>
+        </div>
+        <div class="top-cat">
+          <div class="top-cat-img" style="background-image:url('main_building.png');"></div>
+          <div class="top-cat-label">빌딩·상가</div>
+        </div>
+        <div class="top-cat">
+          <div class="top-cat-img" style="background-image:url('https://images.unsplash.com/photo-1469796466635-455ede028aca?auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="top-cat-label">부지·시행</div>
+        </div>
+      </section>
+
+      <!-- SEARCH BOX -->
+      <section class="search-box" aria-label="매물 검색">
+        <div class="search-label-row">
+          <span>빠른 매물 검색</span>
+          <span>매물번호 / 지역 / 키워드로 한 번에 찾아보세요</span>
+        </div>
+        <div class="search-row">
+          <select aria-label="구분">
+            <option>구분</option>
+            <option>호텔</option>
+            <option>모텔</option>
+            <option>펜션·풀빌라</option>
+            <option>빌딩·상가</option>
+            <option>부지·시행</option>
+          </select>
+          <select aria-label="거래유형">
+            <option>매매/임대</option>
+            <option>매매</option>
+            <option>임대</option>
+          </select>
+          <select aria-label="시도">
+            <option>시/도</option>
+            <option>서울</option>
+            <option>경기</option>
+            <option>인천</option>
+            <option>강원</option>
+          </select>
+          <select aria-label="지역">
+            <option>읍/면/동</option>
+          </select>
+          <button class="btn-search">검색 🔍</button>
+        </div>
+        <input class="keyword-input" placeholder="예) 강남 호텔, 인천 바다뷰 모텔, 30억 이하 수익형" />
+        <div class="listing-number-box" aria-label="매물번호 검색">
+          <div class="listing-number-head">
+            <span>매물번호 검색</span>
+            <span>등록된 매물번호를 바로 조회하세요</span>
+          </div>
+          <div class="listing-number-row">
+            <select aria-label="매물 구분">
+              <option>구분</option>
+              <option>호텔</option>
+              <option>모텔</option>
+              <option>펜션·풀빌라</option>
+              <option>빌딩·상가</option>
+              <option>부지·시행</option>
+            </select>
+            <input type="text" placeholder="매물번호를 입력하세요 (예: A1050)" />
+            <button class="btn-listing-search">매물번호 검색</button>
+          </div>
+        </div>
+      </section>
+      <section class="seo-text"> <!--  seo 항목 5번째 -->
+        <p> 
+          모텔코리아는 호텔·모텔·펜션·풀빌라 등 숙박업 부동산에 특화된 매물 검색 플랫폼입니다. <br>
+          전국 지역별 프리미엄 매물을 실시간으로 제공하며, 금액대별·유형별·매물번호 검색을 통해
+          투자 목적에 맞는 최적의 매물을 빠르게 찾을 수 있습니다.
+        </p>
+      </section>
+      
+      <!-- HOT 매물 -->
+      <section aria-label="HOT 매물">
+        <h2 class="section-title">HOT 매물 <span>실시간으로 인기 있는 매물입니다</span></h2>
+        <div class="hot-grid">
+          <article class="hot-card">
+            <span class="tag tag-green">임대</span>
+            <h3 class="hot-title">[강원] 스키장 인근 리모델링 완료 호텔</h3>
+            <p class="hot-desc">보증금 1억 / 월세 550만 · 객실 40실 · 연면적 1,800㎡</p>
+            <p class="hot-desc">야간 스키장 조망 / 단체 수요 풍부 / 즉시 운영 가능</p>
+            <p class="hot-phone">문의 02-731-6323</p>
+          </article>
+          <article class="hot-card">
+            <span class="tag tag-red">매매</span>
+            <h3 class="hot-title">[경기 용인] 수익률 좋은 비즈니스 호텔 매매</h3>
+            <p class="hot-desc">매매 45억 / 실투자 15억 · 객실 52실 · 연평균 가동률 85%</p>
+            <p class="hot-desc">광역 교통망 / 업무·관광 수요 복합 / 법인 보유자 추천</p>
+            <p class="hot-phone">문의 02-731-6323</p>
+          </article>
+          <article class="hot-card">
+            <span class="tag tag-green">임대</span>
+            <h3 class="hot-title">[부산] 해운대 오션뷰 풀빌라</h3>
+            <p class="hot-desc">보증금 2억 / 월세 900만 · 독채형 6동 · 프리미엄 수영장</p>
+            <p class="hot-desc">SNS 마케팅 최적 / 가족·연인 인기 / 포토존 다수</p>
+            <p class="hot-phone">문의 02-731-6323</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 기타 매물 -->
+      <section class="table-box" aria-label="기타 매물">
+        <h2 class="section-title" style="margin-top:0;">기타 매물</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>유형</th>
+              <th>매물번호</th>
+              <th>제목</th>
+              <th>지역</th>
+              <th>금액</th>
+              <th>비고</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>매매</td>
+              <td>A1001</td>
+              <td>서울 강남역 인근 비즈니스 호텔</td>
+              <td>서울 강남구</td>
+              <td>80억</td>
+              <td>수익형</td>
+            </tr>
+            <tr>
+              <td>임대</td>
+              <td>A1002</td>
+              <td>경기 광교 신도시 레지던스 호텔</td>
+              <td>경기 수원시</td>
+              <td>보증 3억 / 월 700만</td>
+              <td>장기임대</td>
+            </tr>
+            <tr>
+              <td>매매</td>
+              <td>A1003</td>
+              <td>강릉 바다뷰 펜션 단지</td>
+              <td>강원 강릉시</td>
+              <td>35억</td>
+              <td>운영 중</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 공지사항 -->
+      <section class="notice-box" aria-label="공지사항">
+        <h2 class="section-title" style="margin-top:0;">공지사항</h2>
+        <div class="notice-item">
+          <span>2025년 상반기 호텔·펜션 매매 시장 리포트 발행</span>
+          <span class="notice-date">2025-05-10</span>
+        </div>
+        <div class="notice-item">
+          <span>모텔코리아 시스템 정기 점검 안내</span>
+          <span class="notice-date">2025-04-22</span>
+        </div>
+        <div class="notice-item">
+          <span>카카오톡 실시간 상담 채널 오픈</span>
+          <span class="notice-date">2025-03-15</span>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER 기관 로고 -->
+  <div class="footer-logos">
+    <div class="footer-logos-inner">
+      <div class="footer-logo-chip">국토교통부</div>
+      <div class="footer-logo-chip">대한민국 법원 인터넷등기소</div>
+      <div class="footer-logo-chip">부동산거래관리시스템</div>
+      <div class="footer-logo-chip">SEE:REAL</div>
+      <div class="footer-logo-chip">wetax</div>
+      <div class="footer-logo-chip">한국부동산원</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">
+          <div class="footer-logo-mark">H</div>
+          <div class="footer-name">모텔코리아</div><br>
+          <div>모텔코리아는 호텔 매매, 모텔 매매, 펜션 매매, 풀빌라 매매,
+            호텔 임대, 모텔 임대 등 전국 숙박업 부동산 매매·임대 전문 플랫폼입니다.            
+            </div>
+        </div>
+        <p class="footer-info">
+          회사명 : 더글로벌코리아 부동산중개법인 주식회사<br>
+          대표자 : 김경용 ㅣ 주소 : 서울특별시 중구 남대문로117, 7층 (다동 동아빌딩)<br>
+          부동산 번호 : 11140-2018-00053<br>
+          전화 : 02-731-6323 ㅣ 팩스 : 02-744-4567<br>
+          부동산에 기술을 더하는 사람들 © BUGISA, Inc. All rights reserved.
+        </p>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-call-title">대표전화 CALL CENTER</div>
+        <div class="footer-call-number">02-731-6323</div>
+        <a href="https://pf.kakao.com" class="kakao-btn">카카오톡 상담 바로가기</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING KAKAO & CALL -->
+  <div class="social_icon_zone">
+    <div onclick="window.open('https://open.kakao.com/o/','_blank');" style="background-color:#FEE500;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:10px;cursor:pointer;">
+      <img src="https://developers.kakao.com/tool/resource/static/img/about/logos/kakaotalk/kakaotalk_symbol.svg"
+      alt="카카오톡" style="width:28px;height:28px;">
+      <h5 style="margin:0;color:#3B1E1E;">오픈채팅</h5> <!--카카오톡-->
+    </div>
+    <div onclick="location.href='tel:02-731-6323'">
+      <img src="https://img.icons8.com/ios-filled/50/1e3d33/phone.png" alt="전화" style="width:26px;height:auto;" />
+      <h5>전화</h5>
+    </div>
+  </div>
+
+</body>
+</html>
