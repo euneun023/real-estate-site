@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>호텔모텔마당 · 매물 상세</title>
+  <style>
+    :root {
+      --primary: #67ca54;
+      --primary-dark: #56b244;
+      --accent: #ff784e;
+      --border: #e3e6ee;
+      --bg: #f4f6fb;
+      --text-main: #222;
+      --text-sub: #6c7280;
+      --card-bg: #ffffff;
+      --table-header-bg: #f8f9fd;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* 상단 헤더 */
+    .site-header {
+      background: #ffffff;
+      border-bottom: 1px solid #dde1eb;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .site-header-inner {
+      width: 1180px;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 10px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(103,202,84,0.5);
+    }
+
+    .logo-text-main {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .logo-text-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .header-badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(103,202,84,0.12);
+      color: var(--primary-dark);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* 페이지 컨테이너 */
+    .page-wrap {
+      width: 1180px;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 20px 8px 60px;
+    }
+
+    .top-breadcrumb {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-bottom: 6px;
+    }
+
+    .top-breadcrumb a {
+      color: var(--text-sub);
+    }
+
+    .top-breadcrumb span {
+      margin: 0 4px;
+    }
+
+    /* 상단 타이틀 & 가격 */
+    .page-title-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 14px;
+      gap: 12px;
+    }
+
+    .page-title-main {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    .tag-pill {
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(103,202,84,0.4);
+      color: var(--primary-dark);
+      background: rgba(103,202,84,0.06);
+      font-weight: 500;
+    }
+
+    .tag-pill.gray {
+      border-color: #cfd3e3;
+      color: #7c8190;
+      background: #f1f3f8;
+    }
+
+    .page-title {
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .page-title-sub {
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .price-highlight {
+      text-align: right;
+      padding: 8px 14px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #fff2e4, #ffe0d0);
+      border: 1px solid #ffd2b8;
+      min-width: 210px;
+    }
+
+    .price-highlight strong {
+      display: block;
+      font-size: 22px;
+      color: #ff5c35;
+      font-weight: 800;
+    }
+
+    .price-highlight span {
+      display: block;
+      margin-top: 4px;
+      font-size: 12px;
+      color: #b25c37;
+    }
+
+    .price-highlight small {
+      display: inline-block;
+      margin-top: 3px;
+      padding: 1px 6px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: rgba(255,255,255,0.7);
+      color: #b25c37;
+    }
+
+    /* 레이아웃 */
+    .detail-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 820px) 320px;
+      gap: 18px;
+      align-items: flex-start;
+      margin-top: 8px;
+    }
+
+    /* 메인 카드 공통 */
+    .card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(32,40,70,0.08);
+      overflow: hidden;
+      border: 1px solid #e6e9f3;
+    }
+
+    .detail-main {
+      overflow: hidden;
+    }
+
+    .photo-wrap {
+      position: relative;
+      background: #000;
+    }
+
+    .photo-main {
+      width: 100%;
+      display: block;
+      max-height: 420px;
+      object-fit: cover;
+    }
+
+    .photo-overlay-top {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      font-size: 11px;
+      color: #fff;
+    }
+
+    .photo-label {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.55);
+    }
+
+    .photo-overlay-bottom {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to top, rgba(0,0,0,0.48), transparent);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 10px 16px;
+      font-size: 11px;
+      color: #fff;
+    }
+
+    .photo-counter {
+      font-size: 12px;
+    }
+
+    .btn-photo-view {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 0;
+      background: rgba(255,255,255,0.92);
+      font-size: 11px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #333;
+    }
+
+    .btn-photo-view span {
+      font-size: 12px;
+    }
+
+    /* section 공통 */
+    .section {
+      border-top: 1px solid #edf0f8;
+      padding: 20px 20px 22px;
+    }
+
+    .section:first-of-type {
+      border-top: 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .section-title small {
+      font-size: 11px;
+      color: var(--text-sub);
+      font-weight: 400;
+      margin-left: 8px;
+    }
+
+    .section-title-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .status-badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      border: 1px solid rgba(103,202,84,0.4);
+      color: var(--primary-dark);
+      background: rgba(103,202,84,0.06);
+    }
+
+    /* 탭 (건물/층/객실) */
+    .tab-line {
+      display: inline-flex;
+      border-radius: 999px;
+      background: #f2f4fb;
+      padding: 2px;
+      margin-bottom: 10px;
+    }
+
+    .tab-line button {
+      border: 0;
+      background: transparent;
+      padding: 6px 14px;
+      font-size: 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--text-sub);
+    }
+
+    .tab-line button.is-active {
+      background: #ffffff;
+      color: #222;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* info table */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #edf0f8;
+      background: #ffffff;
+      font-size: 12px;
+      table-layout: fixed;
+    }
+
+    .info-table th,
+    .info-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f1f2f8;
+      vertical-align: middle;
+    }
+
+    .info-table tr:last-child th,
+    .info-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .info-table th {
+      width: 120px;
+      background: var(--table-header-bg);
+      color: var(--text-sub);
+      font-weight: 500;
+    }
+
+    .info-table td {
+      width: 220px;
+      color: var(--text-main);
+      word-break: keep-all;
+    }
+
+    .info-table td span.sub {
+      display: block;
+      margin-top: 2px;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .td-highlight {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .unit {
+      color: var(--text-sub);
+      font-size: 11px;
+      margin-left: 2px;
+    }
+
+    /* 그래프 영역 */
+    .chart-box {
+      border-radius: 12px;
+      padding: 12px 14px 14px;
+      margin-top: 10px;
+      background: linear-gradient(135deg, #f2f7ff, #ffffff);
+      border: 1px solid #dde4ff;
+      font-size: 12px;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 10px;
+    }
+
+    .chart-header strong {
+      font-size: 13px;
+    }
+
+    .chart-chip {
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: #fff;
+      border: 1px solid #d1d8ff;
+      color: #4a55c4;
+    }
+
+    .chart-canvas {
+      position: relative;
+      height: 150px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: linear-gradient(to top, #c8d8ff 0%, #f5f7ff 45%, #ffffff 100%);
+    }
+
+    .chart-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 18px;
+      height: 2px;
+      background: #4a63d6;
+      transform: skewX(-17deg);
+      box-shadow: 0 -20px 0 rgba(74,99,214,0.2);
+    }
+
+    .chart-x-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .chart-legend {
+      margin-top: 4px;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    /* 중개사 한마디 */
+    .text-list {
+      margin: 0;
+      padding-left: 16px;
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .text-list li + li {
+      margin-top: 4px;
+    }
+
+    .section-note {
+      font-size: 11px;
+      color: var(--text-sub);
+      margin-top: 8px;
+    }
+
+    /* 하단 사진 / 유사매물 */
+    .photo-sub-wrap {
+      padding: 18px 20px 12px;
+      border-top: 1px solid #edf0f8;
+      background: #ffffff;
+    }
+
+    .photo-sub-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .photo-sub-main {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .photo-sub-caption {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .photo-sub-caption a {
+      text-decoration: underline;
+    }
+
+    .similar-section {
+      margin-top: 10px;
+      padding: 0 20px 18px;
+      background: #ffffff;
+      border-top: 1px solid #edf0f8;
+    }
+
+    .similar-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 14px 0 10px;
+    }
+
+    .similar-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .similar-card {
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ffffff;
+      font-size: 11px;
+      border: 1px solid #e3e6f3;
+      box-shadow: 0 6px 16px rgba(35,42,70,0.08);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      cursor: pointer;
+    }
+
+    .similar-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 22px rgba(35,42,70,0.14);
+    }
+
+    .similar-card img {
+      width: 100%;
+      height: 96px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .similar-body {
+      padding: 7px 9px 9px;
+    }
+
+    .similar-title-text {
+      font-weight: 600;
+      margin-bottom: 2px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .similar-meta {
+      color: var(--text-sub);
+      margin-top: 2px;
+    }
+
+    .similar-price {
+      color: var(--accent);
+      font-weight: 700;
+      margin-top: 3px;
+    }
+
+    /* 오른쪽 사이드 */
+    .detail-side {
+      position: sticky;
+      top: 16px;
+      align-self: flex-start;
+    }
+
+    .agent-card {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(32,40,70,0.08);
+      padding: 14px 14px 16px;
+      margin-bottom: 12px;
+      font-size: 12px;
+      border: 1px solid #e6e9f3;
+    }
+
+    .agent-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    .agent-photo {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #67ca54, #4ba83b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      box-shadow: 0 8px 22px rgba(103,202,84,0.6);
+    }
+
+    .agent-name {
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .agent-office {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .agent-meta {
+      font-size: 11px;
+      color: var(--text-sub);
+      margin: 6px 0 8px;
+    }
+
+    .agent-meta div + div {
+      margin-top: 3px;
+    }
+
+    .agent-phone-label {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .agent-phone {
+      font-size: 19px;
+      font-weight: 800;
+      margin: 2px 0 4px;
+    }
+
+    .agent-phone small {
+      font-size: 11px;
+      font-weight: 500;
+      margin-left: 4px;
+      color: var(--primary-dark);
+    }
+
+    .btn-group-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 9px 10px;
+      font-size: 13px;
+      background: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary-dark);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 6px 16px rgba(103,202,84,0.4);
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      color: var(--text-main);
+    }
+
+    .btn-icon {
+      font-size: 14px;
+    }
+
+    .side-box {
+      margin-top: 10px;
+      background: var(--card-bg);
+      border-radius: 14px;
+      box-shadow: 0 8px 22px rgba(32,40,70,0.06);
+      padding: 12px 12px 14px;
+      font-size: 11px;
+      color: var(--text-sub);
+      border: 1px solid #e6e9f3;
+    }
+
+    .side-box-title {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .side-input {
+      margin-top: 6px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .side-input input {
+      flex: 1;
+      border-radius: 10px;
+      border: 1px solid #d8ddef;
+      padding: 7px 8px;
+      font-size: 11px;
+    }
+
+    .side-input button {
+      border-radius: 10px;
+      border: 0;
+      padding: 7px 10px;
+      font-size: 11px;
+      background: var(--primary);
+      color: #fff;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .side-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    /* footer */
+    .page-footer {
+      margin-top: 26px;
+      font-size: 10px;
+      color: var(--text-sub);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* 반응형 */
+    @media (max-width: 1100px) {
+      .site-header-inner {
+        width: 100%;
+      }
+
+      .detail-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .detail-side {
+        position: static;
+      }
+
+      .similar-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .page-title-wrap {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .price-highlight {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .similar-list {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 상단 헤더 -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="logo-wrap">
+        <div class="logo-icon">Hm</div>
+        <div>
+          <div class="logo-text-main">호텔모텔마당</div>
+          <div class="logo-text-sub">호텔 · 모텔 · 펜션 · 상업용 부동산 전문</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-badge">전국 상업용 부동산 매물 3,245건</div>
+        <div>고객센터 02-000-0000</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <!-- 위치 -->
+    <div class="top-breadcrumb">
+      <a href="#">홈</a><span>&gt;</span><a href="#">강원 매물</a><span>&gt;</span><span>호텔·콘도</span>
+    </div>
+
+    <!-- 타이틀/가격 -->
+    <div class="page-title-wrap">
+      <div class="page-title-main">
+        <div class="tag-list">
+          <span class="tag-pill">매매</span>
+          <span class="tag-pill gray">강원 · 평창</span>
+          <span class="tag-pill gray">호텔 · 콘도</span>
+        </div>
+        <div class="page-title">[평창 스키장 도보 3분] 신축급 리모델링 호텔 매매</div>
+        <div class="page-title-sub">
+          객실 45실 · 연면적 3,000㎡ · 2021년 준공 · 스키장 메인 슬로프 조망
+        </div>
+      </div>
+      <div class="price-highlight">
+        <strong>매매 45억</strong>
+        <span>보증금 3억 / 현재 안정 운영 중</span>
+        <small>연 매출 약 9억 (23년 기준)</small>
+      </div>
+    </div>
+
+    <!-- 본문 레이아웃 -->
+    <div class="detail-layout">
+
+      <!-- 메인 -->
+      <div class="detail-main card">
+        <!-- 사진 -->
+        <div class="photo-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1400&q=80"
+            alt="객실 대표 사진"
+            class="photo-main"
+          />
+          <div class="photo-overlay-top">
+            <div class="photo-label">실사진 · 중개사 직접 촬영</div>
+            <div>매물번호 12345 · 최근 3명 문의</div>
+          </div>
+          <div class="photo-overlay-bottom">
+            <div class="photo-counter">대표 사진 1 / 12</div>
+            <button class="btn-photo-view">
+              <span class="btn-icon">🔍</span> 사진 크게보기
+            </button>
+          </div>
+        </div>
+
+        <!-- 기본정보 -->
+        <section class="section">
+          <div class="section-title">
+            <div>
+              기본정보
+              <small>등기부등본·건축물대장 확인 완료</small>
+            </div>
+            <div class="section-title-right">
+              <span class="status-badge">현재 영업 중</span>
+            </div>
+          </div>
+
+          <table class="info-table">
+            <tbody>
+              <tr>
+                <th>주소</th>
+                <td>강원도 평창군 ○○면 스키장로 123-4</td>
+                <th>매물유형</th>
+                <td>호텔 · 콘도 매매</td>
+              </tr>
+              <tr>
+                <th>매매가</th>
+                <td><span class="td-highlight">45억</span></td>
+                <th>감정가</th>
+                <td>47억 (2023년 감정평가)</td>
+              </tr>
+              <tr>
+                <th>층/전체층</th>
+                <td>지하 1층 ~ 지상 7층 / 8층</td>
+                <th>대지면적</th>
+                <td>1,000㎡ <span class="unit">(약 302평)</span></td>
+              </tr>
+              <tr>
+                <th>연면적</th>
+                <td>3,000㎡ <span class="unit">(약 908평)</span></td>
+                <th>용도지역</th>
+                <td>계획관리지역</td>
+              </tr>
+              <tr>
+                <th>객실수</th>
+                <td>45실 (온돌 10실 / 침대 35실)</td>
+                <th>주차대수</th>
+                <td>지상·지하 총 40대 가능</td>
+              </tr>
+              <tr>
+                <th>준공일</th>
+                <td>2021-01-15</td>
+                <th>입주가능일</th>
+                <td>협의 (키 인수 가능)</td>
+              </tr>
+              <tr>
+                <th>특이사항</th>
+                <td colspan="3">
+                  스키장 셔틀 정류장 도보 1분 / 전 객실 테라스 및 시스템에어컨 /
+                  2023년 전 객실 리모델링 · 인수 후 즉시 운영 가능
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- 건물 정보 -->
+        <section class="section">
+          <div class="section-title">
+            <span>건물 정보</span>
+          </div>
+
+          <div class="tab-line">
+            <button class="is-active">전체</button>
+            <button>층별</button>
+            <button>객실타입</button>
+          </div>
+
+          <table class="info-table">
+            <tbody>
+              <tr>
+                <th>구조</th>
+                <td>철근콘크리트구조 (RC)</td>
+                <th>외벽마감</th>
+                <td>고급 석재 + 로이유리</td>
+              </tr>
+              <tr>
+                <th>난방방식</th>
+                <td>지역난방 / 개별 객실 제어</td>
+                <th>승강기</th>
+                <td>승객용 2대, 비상용 1대</td>
+              </tr>
+              <tr>
+                <th>방향</th>
+                <td>주요 객실 남동향 / 스키장 메인 슬로프 조망</td>
+                <th>주변시설</th>
+                <td>편의점·카페 도보 5분, 대형마트 차량 10분</td>
+              </tr>
+              <tr>
+                <th>리모델링</th>
+                <td>2023년 객실·로비·복도 전면 리모델링</td>
+                <th>관리비</th>
+                <td>월 약 500만 (난방·전기 포함 / 사용량에 따라 변동)</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- 토지 정보 -->
+        <section class="section">
+          <div class="section-title">
+            <span>토지 정보</span>
+          </div>
+
+          <table class="info-table">
+            <tbody>
+              <tr>
+                <th>지목</th>
+                <td>대</td>
+                <th>용도지역</th>
+                <td>계획관리지역</td>
+              </tr>
+              <tr>
+                <th>대지면적</th>
+                <td>1,000㎡ (약 302평)</td>
+                <th>도로조건</th>
+                <td>남측 12m, 동측 8m 도로 2면 접</td>
+              </tr>
+              <tr>
+                <th>주출입구</th>
+                <td>남측 메인 도로 방향</td>
+                <th>주차장</th>
+                <td>옥외 및 지하주차장 (총 40대)</td>
+              </tr>
+              <tr>
+                <th>기타</th>
+                <td colspan="3">동계 시즌 추가 부지 활용 가능 (제설장·야외부스 등)</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- 운영/수익 -->
+        <section class="section">
+          <div class="section-title">
+            <span>운영 및 수익 정보</span>
+          </div>
+
+          <table class="info-table">
+            <tbody>
+              <tr>
+                <th>최근 매출</th>
+                <td>연 매출 약 9억 (2023년 기준)</td>
+                <th>객실 점유율</th>
+                <td>성수기 평균 85% / 비수기 평균 45%</td>
+              </tr>
+              <tr>
+                <th>운영형태</th>
+                <td>직영 운영 / OTA 다수 입점</td>
+                <th>인수조건</th>
+                <td>시설·비품 일괄 인수 협의 가능</td>
+              </tr>
+              <tr>
+                <th>운영비</th>
+                <td>인건비 및 관리비 포함 월 약 5,000만</td>
+                <th>기타</th>
+                <td>단체예약·시즌제 패키지 상품 다수</td>
+              </tr>
+            </tbody>
+          </table>
+
+            <div class="chart-box">
+              <div class="chart-header">
+                <strong>최근 객실 매출 추이 (연간)</strong>
+                <span class="chart-chip">그래프 샘플 · 실제 데이터 연동 가능</span>
+              </div>
+              <div class="chart-canvas">
+                <div class="chart-line"></div>
+              </div>
+              <div class="chart-x-labels">
+                <span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2023</span>
+              </div>
+              <div class="chart-legend">
+                ※ 실제 서비스에서는 여기 영역에 Chart.js / ApexCharts 등으로 매출 그래프를 표시하면 됩니다.
+              </div>
+            </div>
+        </section>
+
+        <!-- 중개사 한마디 -->
+        <section class="section">
+          <div class="section-title">
+            <span>중개사 한마디</span>
+          </div>
+
+          <ul class="text-list">
+            <li>스키장 메인 슬로프까지 도보 3분 거리의 프리미엄 입지입니다.</li>
+            <li>2023년 전 객실 리모델링으로 추가 투자비 부담이 적습니다.</li>
+            <li>성수기·극성수기 단체객 비중이 높아 안정적인 현금 흐름이 가능합니다.</li>
+            <li>매수인 요청 시 상세 손익자료 및 객실 운영 데이터 제공이 가능합니다.</li>
+          </ul>
+          <p class="section-note">
+            ※ 위 내용은 매도인으로부터 제공받은 정보로, 실제와 차이가 있을 수 있습니다.
+          </p>
+        </section>
+
+        <!-- 하단 사진 / 유사매물 -->
+        <div class="photo-sub-wrap">
+          <div class="photo-sub-title">대표 객실 상세 사진</div>
+          <img
+            class="photo-sub-main"
+            src="https://images.unsplash.com/photo-1600585154340-0ef3c08c0632?auto=format&fit=crop&w=1400&q=80"
+            alt="객실 추가 이미지"
+          />
+          <div class="photo-sub-caption">
+            <span>트리플 베드 객실 (스키장 조망)</span>
+            <a href="#">객실 사진 더보기 &gt;</a>
+          </div>
+        </div>
+
+        <div class="similar-section">
+          <div class="similar-title">주변 유사 매물</div>
+          <div class="similar-list">
+            <article class="similar-card">
+              <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80" alt="">
+              <div class="similar-body">
+                <div class="similar-title-text">[평창] 스키장 인근 리모델링 호텔</div>
+                <div class="similar-meta">매매 40억 · 객실 40실</div>
+                <div class="similar-price">연 매출 8억대</div>
+              </div>
+            </article>
+            <article class="similar-card">
+              <img src="https://images.unsplash.com/photo-1540350394557-8d1d1c6e3fd4?auto=format&fit=crop&w=600&q=80" alt="">
+              <div class="similar-body">
+                <div class="similar-title-text">[홍천] 리조트형 콘도 매매</div>
+                <div class="similar-meta">매매 60억 · 객실 55실</div>
+                <div class="similar-price">스파·사우나 포함</div>
+              </div>
+            </article>
+            <article class="similar-card">
+              <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" alt="">
+              <div class="similar-body">
+                <div class="similar-title-text">[평창] 모던 감성 부티크 호텔</div>
+                <div class="similar-meta">매매 32억 · 객실 32실</div>
+                <div class="similar-price">신축급 컨디션</div>
+              </div>
+            </article>
+            <article class="similar-card">
+              <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=600&q=80" alt="">
+              <div class="similar-body">
+                <div class="similar-title-text">[정선] 카지노 인근 비즈니스 호텔</div>
+                <div class="similar-meta">매매 55억 · 객실 50실</div>
+                <div class="similar-price">단체 수요 풍부</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- 오른쪽 사이드 -->
+      <aside class="detail-side">
+        <div class="agent-card">
+          <div class="agent-header">
+            <div class="agent-photo">공인<br>중개사</div>
+            <div>
+              <div class="agent-name">홍길동 공인중개사</div>
+              <div class="agent-office">평창 ○○ 공인중개사 사무소</div>
+            </div>
+          </div>
+
+          <div class="agent-meta">
+            <div>등록번호 : 12345-2023-00001</div>
+            <div>소재지 : 강원도 평창군 ○○면 스키장로 12</div>
+          </div>
+
+          <div class="agent-phone-label">담당자 직통번호</div>
+          <div class="agent-phone">010-1234-5678 <small>클릭 시 전화 연결</small></div>
+          <div class="agent-meta">상담 가능 시간 : 09:00 ~ 21:00 (연중무휴)</div>
+
+          <div class="btn-group-vertical">
+            <button class="btn btn-primary">
+              <span class="btn-icon">📞</span> 전화 상담하기
+            </button>
+            <button class="btn btn-outline">
+              <span class="btn-icon">💬</span> 문자 · 카톡으로 문의 남기기
+            </button>
+          </div>
+        </div>
+
+        <div class="side-box">
+          <div class="side-box-title">추가 문의 남기기</div>
+          <div>이름과 연락처를 남겨주시면 담당 중개사가 확인 후 연락드립니다.</div>
+          <div class="side-input">
+            <input type="text" placeholder="이름" />
+          </div>
+          <div class="side-input">
+            <input type="text" placeholder="연락처 (숫자만)" />
+          </div>
+          <div class="side-input">
+            <button>문의 남기기</button>
+          </div>
+        </div>
+
+        <div class="side-box">
+          <div class="side-box-title">관심 매물 등록</div>
+          <label class="side-checkbox">
+            <input type="checkbox" />
+            이 매물을 내 관심 매물로 등록합니다.
+          </label>
+          <div style="margin-top:4px;">
+            관심 매물로 등록해두시면 나중에 한 번에 비교·조회가 가능합니다.
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="page-footer">
+      본 페이지는 호텔·모텔·펜션 매물 상세페이지 예시입니다. 실제 서비스에서는<br />
+      DB에서 매물 정보를 불러와 각 영역의 텍스트를 치환해 사용하시면 됩니다.
+    </div>
+  </div>
+</body>
+</html>
