@@ -1,0 +1,2517 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>모텔코리아 | 호텔·모텔·펜션·빌딩·부지 매매·임대 부동산 플랫폼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="모텔코리아는 호텔·모텔·펜션·빌딩·부지 등 수익형 부동산 매매·임대에 특화된 플랫폼입니다. 지역·금액·유형별 쉽고 빠른 검색으로 전국 숙박업 매물을 한눈에 확인하세요.">
+  <!-- Open Graph --> <meta property="og:title" content="모텔코리아 | 호텔·모텔·펜션·빌딩·부지 전문 매매·임대 플랫폼"> <meta property="og:description" content="전국 숙박업 부동산 매매·임대 전문 정보 제공"> <meta property="og:type" content="website"> <!-- Keywords --> <meta name="keywords" content="호텔 매매, 모텔 매매, 펜션 매매, 풀빌라 매매, 빌딩 매매, 상가 매매, 숙박업 부동산, 임대, 투자매물, 상권부동산"> <!-- Local SEO --> <meta name="geo.region" content="KR"> <meta name="geo.placename" content="South Korea"> <meta name="geo.position" content="37.5665;126.9780"> <meta name="ICBM" content="37.5665, 126.9780">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+  <style>
+    :root {
+      /* 메인 컬러 시스템 (Airbnb + Forest Green 믹스) */
+      --green-main: #2f5d50;
+      --green-deep: #1e3d33;
+      --green-soft: #e8f3ef;
+      --mint: #2ac1a0;
+
+      --sand: #f7f2e9;
+      --bg: #fafafa;
+      --white: #ffffff;
+      --text-main: #222222;
+      --text-sub: #777777;
+      --line: #e4e4e4;
+
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.10);
+      --radius-card: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ================= HEADER ================= */
+/* ===== 모던 헤더 디자인 ===== */
+.modern-header {
+  background: #ffffff;
+  padding: 14px 22px;
+  width: 100%;
+  max-width: 1480px;   /* 페이지 폭과 동일하게 */
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  justify-content: center; /* 가운데 정렬 */
+  text-align: center;      /* 내부 텍스트도 중앙 */
+  /* 부드러운 그림자 */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
+  /* 나타날 때 모션 효과 */
+  animation: fadeSlideDown 0.55s ease;
+}
+
+/* Fade + Slide Down Motion */
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 로고 영역 */
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto;      /* 좌우 auto로 중앙 */
+}
+
+/* 로고 이미지 */
+.logo-icon {
+  width: 55px;
+  height: auto;
+  border-radius: 6px;
+
+  /* 로고 미세 3D 효과 */
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.08));
+}
+
+/* 브랜드 텍스트 */
+.brand-text-zone {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text-main {
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 2px;
+
+  /* 모바일에서 풍부하게 보이도록 */
+  letter-spacing: -0.5px;
+}
+
+.sub-headline {
+  font-size: 13.5px;
+  color: #555;
+  font-weight: 500;
+  margin-top: 0;
+  line-height: 1.3;
+  max-width: 320px;
+}
+
+/* ========== 모바일 반응형 적용 ========== */
+@media (max-width: 768px) {
+
+  .modern-header {
+    padding: 12px 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    justify-content: center;
+    text-align: center;
+  }
+
+  .logo-icon {
+    width: 48px;
+  }
+
+  .logo-text-main {
+    font-size: 18px;
+  }
+
+  .sub-headline {
+    font-size: 12.5px;
+    max-width: 240px;
+    line-height: 1.32;
+  }
+}
+
+/* 초소형 모바일 (아이폰 SE 같은 사이즈) */
+@media (max-width: 430px) {
+
+  .logo-area {
+    gap: 8px;
+  }
+
+  .logo-icon {
+    width: 42px;
+  }
+
+  .logo-text-main {
+    font-size: 17px;
+  }
+
+  .sub-headline {
+    font-size: 11.5px;
+    max-width: 200px;
+  }
+}
+
+    .header-wrap {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-top {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .header-top-right a {
+      margin-left: 16px;
+    }
+
+    .header-top-right a:hover {
+      color: var(--green-main);
+      font-weight: 500;
+    }
+
+    .header-main {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 12px 24px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit; 
+    }
+
+    .logo-area > div:last-child {
+      text-align: center;
+    }
+
+
+    /*
+    .main-nav {
+      display: flex;
+      justify-content: center;
+      gap: 62px;
+      font-size: 16px;
+      width: 100%;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      margin-top: 4px;
+      text-align: center;
+    }
+*/
+.main-nav-row {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      border-top: 1px solid var(--line);
+      /* padding-top: 12px; */
+      padding: 12px 40px 0; /* ← 좌우 24px 여백 추가 */
+
+      margin-top: 4px;
+    }
+
+    .main-nav {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      gap: 62px; 
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .nav-blog-link {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-left: auto;
+      transition: color 0.15s ease;
+    }
+
+    .nav-blog-link:hover {
+      color: var(--green-main);
+      text-decoration: underline;
+    }
+
+
+    .logo-text-main {
+      font-size: 2.4rem; /* h1보다 크게 */
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+.logo-icon {
+  width: 64px;       /* 필요 시 크기 조절 */
+  height: 64px;
+  object-fit: contain;
+}
+/*
+    .header-main {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 12px 24px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #c9b48a, #f1e2c2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .logo-text-main {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .logo-text-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 32px;
+      font-size: 14px;
+    }
+*/
+    .main-nav a {
+      padding-bottom: 6px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .main-nav a:hover {
+      color: var(--green-main);
+      border-bottom-color: var(--green-main);
+      font-weight: 500;
+    }
+
+    /* ================= TOP INSTITUTION LOGOS ================= */
+
+    .inst-logos {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      padding: 16px 0;
+    }
+
+    .inst-logos-inner {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      overflow-x: auto;
+    }
+
+    .inst-logo-item {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid #f0f0f0;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      white-space: nowrap;
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+    .sub-headline {
+      color: var(--text-sub);
+      font-weight: 500;
+      margin: 4px 0 0;   /* 위/아래 여백 축소 */
+      line-height: 1.3;   /* 필요 시 간격 조정 */
+    }
+    /* ================= LAYOUT ================= */
+
+    .page-container {
+      max-width: 1480px;
+      margin: 32px auto 40px;
+      padding: 0 24px 40px;
+      display: flex;
+      gap: 32px;
+    }
+
+    .sidebar {
+      width: 260px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .main {
+      flex: 1;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      padding: 20px 18px;
+    }
+
+    /* ================= SIDEBAR ================= */
+
+    .call-title {
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .call-number {
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 6px;
+      margin-bottom: 4px;
+      color: var(--green-deep);
+    }
+
+    .call-desc {
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .visit-label {
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .visit-today {
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+
+    .visit-total {
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .input {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 12px;
+      border: 1px solid #dddddd;
+      background: var(--beige, #f9f6f0);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    textarea.input {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      background: var(--green-main);
+      color: #ffffff;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--green-deep);
+      transform: translateY(-1px);
+    }
+
+    /* 금액별 검색 */
+
+    .price-title {
+      text-align: center;
+      background: var(--green-main);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px;
+      border-radius: 12px;
+      margin: -4px -4px 12px;
+    }
+
+    .price-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 4px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .price-item:last-child {
+      border-bottom: none;
+    }
+
+    .label-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--green-soft);
+      color: var(--green-deep);
+      border: 1px solid #cde2db;
+    }
+
+    .price-item:hover {
+      background: #f8fbfa;
+    }
+/* ===== 지역별 검색 버튼 ===== */
+    .region-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3열 */
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .region-btn {
+      border: 1px solid #e0e0e0;
+      background: #f9f6f0;
+      border-radius: 999px;
+      padding: 6px 0;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    /* 호버 시 살짝 강조 */
+    .region-btn:hover {
+      background: var(--green-soft);
+      color: var(--green-deep);
+      border-color: #cde2db;
+    }
+
+    /* 선택된 상태 (나중에 JS로 토글해도 됨) */
+    .region-btn.active {
+      background: var(--green-main);
+      color: #fff;
+      border-color: var(--green-main);
+    }
+
+
+
+/* ─────────────────────────────────────
+   사이드바 내부 요소 중앙정렬
+   ───────────────────────────────────── */
+.sidebar .card {
+    text-align: center !important;   /* 텍스트와 버튼 모두 중앙 */
+}
+
+/* 대표번호 숫자 */
+.sidebar .call-number {
+    text-align: center !important;
+}
+
+/* 방문자 숫자 등 */
+.sidebar .visit-label,
+.sidebar .visit-today,
+.sidebar .visit-total {
+    text-align: center !important;
+}
+
+/* 입력폼을 중앙정렬 */
+.sidebar .input {
+    text-align: center !important;
+}
+
+/* 버튼도 가운데 정렬 */
+.sidebar .btn {
+    display: block;
+    width: 100%;
+    text-align: center !important;
+    margin: 0 auto;
+}
+
+    /* ================= MAIN ================= */
+
+    /* 상단 카테고리 */
+
+    .top-categories {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+    .top-cat {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #f4f4f4;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  aspect-ratio: 1 / 1;          /* 정사각형 비율 */
+}
+/* 자세히 보기 → 추가 */
+.top-cat::after {
+      content: "자세히 보기 →";
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      pointer-events: none;
+    }
+/* (옵션) aspect-ratio 미지원 브라우저 대비 */
+.top-cat::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+.top-cat > * {
+  position: absolute;
+  inset: 0;
+}
+.top-cat-label {
+  align-self: flex-end;
+  padding: 10px 12px;
+  font-size: 16px;       /* 기존보다 크게 */
+  font-weight: 700;      /* Bold */
+ /*  background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); */
+ background: linear-gradient(to top, rgba(255, 255, 255, 0.5), transparent);
+}
+
+.top-cat-img {
+    background-size: cover;
+    background-position: center;
+  }
+    /*
+    .top-cat {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #f4f4f4;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      cursor: pointer;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .top-cat-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.8);
+    }
+
+    .top-cat-label {
+      position: relative;
+      z-index: 1;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+    }
+*/
+    /* 검색 박스 */
+
+    .search-box {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 22px 22px 18px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 34px;
+    }
+
+    .search-label-row {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .search-row select {
+      flex: 1;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid #dddddd;
+      background: var(--sand);
+      font-size: 13px;
+    }
+
+    .btn-search {
+      padding: 0 22px;
+      border-radius: 14px;
+      background: var(--mint);
+      color: #ffffff;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+
+    .btn-search:hover {
+      background: #23a58a;
+    }
+
+    .keyword-input {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid #dddddd;
+      background: #f7f7f7;
+      font-size: 13px;
+    }
+
+    .listing-number-box {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #f1f1f1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .listing-number-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .listing-number-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .listing-number-row select {
+      flex: 1;
+      background: var(--sand);
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid #dddddd;
+      background: var(--sand);
+      font-size: 13px;
+    }
+    .listing-number-row input {
+      flex: 3;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid #dddddd;
+      background: var(--sand);
+      font-size: 13px;
+    }
+
+    .listing-number-row input {
+      background: #ffffff;
+    }
+
+    .btn-listing-search {
+      padding: 0 22px;
+      border-radius: 14px;
+      background: var(--green-main);
+      color: #ffffff;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-listing-search:hover {
+      background: var(--green-deep);
+    }
+    /* 섹션 제목 */
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 10px 0 14px;
+    }
+
+    .section-title span {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-left: 6px;
+    }
+    .seo-text p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    /* HOT 매물 */
+
+    .hot-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    @media (max-width: 1024px) {
+      .hot-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hot-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 카드 기본 */
+    .hot-card {
+      position: relative;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 24px 22px 28px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    /* 리본 (공통) */
+    .ribbon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 7px 20px 7px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      clip-path: polygon(0 0, 100% 0, 86% 100%, 0% 100%);
+      border-bottom-right-radius: 6px;
+    }
+
+    /* 리본 자동 매핑 */
+    .hot-card[data-type="임대"] .ribbon {
+      background-color: #2a9d8f;  /* 임대 - 초록 */
+    }
+
+    .hot-card[data-type="매매"] .ribbon {
+      background-color: #e63946;  /* 매매 - 빨강 */
+    }
+
+    /* 텍스트 */
+    .hot-title {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .hot-desc {
+      font-size: 14px;
+      margin: 2px 0;
+      color: #555;
+    }
+
+    .hot-phone {
+      margin-top: 10px;
+      font-weight: 700;
+      color: #0a7c6f;
+    }
+
+/*
+    .hot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .hot-card {
+      background: var(--white);
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      padding: 18px 16px;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      font-size: 13px;
+    }
+
+    .hot-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .tag-green {
+      background: var(--green-main);
+    }
+
+    .tag-red {
+      background: #e05b4f;
+    }
+
+    .hot-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 8px;
+      margin-bottom: 4px;
+    }
+
+    .hot-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 4px;
+    }
+
+    .hot-phone {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green-deep);
+    }
+*/
+    /* 기타 매물 테이블 */
+
+    .table-box {
+      margin-top: 32px;
+      background: var(--white);
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      /* padding: 18px 18px 8px; */
+      padding: 18px 20px 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 10px 8px;
+      border-bottom: 1px solid #f1f1f1;
+      text-align: left;
+    }
+
+    th {
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .td-title {       /* 제목은 한 줄만, 길면 … 처리 */
+      max-width: 260px;       /* 너비는 상황 봐서 조절 */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .td-amount,
+    .td-rooms,
+    .td-sales {
+      text-align: right;
+    }
+
+    .listing-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .listing-table th,
+    .listing-table td {
+      padding: 10px 8px;
+      border-bottom: 1px solid #f1f1f1;
+      text-align: left;
+    }
+
+
+    .listing-table thead th {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
+      background: #ffffff;
+      border-top: 1px solid #e3e3e3;     /* ↑ 위 선 추가 */
+      border-bottom: 1px solid #e3e3e3;
+      padding: 8px 8px;   /* 살짝 낮춰서 컴팩트하게 */
+    }
+
+    .listing-table tbody tr {
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .listing-table tbody tr:hover {
+      background: #fafdf8; /* 아주 옅은 연두 느낌 */
+    }
+
+    /* 거래형태 배지 */
+    .deal-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 46px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    /* 매매 = 핑크/레드 계열 */
+    .deal-sale {
+      background: #f25b7a;
+    }
+
+    /* 임대 = 청록 계열 */
+    .deal-rent {
+      background: #12a4a4;
+    }
+
+    /* 토지 = 흙색 */
+    .deal-land {
+      background: #a8743a;
+    }
+
+    /* 공지사항 */
+    .notice-box {
+      margin-top: 32px;
+      background: var(--white);
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      padding: 18px;
+    }
+
+    .notice-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #f1f1f1;
+      font-size: 13px;
+    }
+
+    .notice-item:last-child {
+      border-bottom: none;
+    }
+
+    .notice-date {
+      color: var(--text-sub);
+      font-size: 12px;
+    }
+    /* ================= 상담문의 리스트 (공지 대체) ================= */
+
+    .consult-item {
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      align-items: center;
+      padding: 10px 4px;
+   /*   border-bottom: 1px solid #eee; */
+   border-bottom: 1px solid #e8e4db; /* 베이지 라인 */
+      font-size: 13px;
+      gap: 10px;
+    }
+
+    .consult-item:last-child {
+      border-bottom: none;
+    }
+
+    .consult-badge {
+      /* 포레스트 그린*/
+      background: #3c5f4b;  
+      color: #fff;
+      padding: 4px 10px;
+      font-size: 12px;
+      border-radius: 6px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .consult-title {
+     /* color: #333; */
+     color: #2f2f2f;         /* 부드러운 딥그레이 */
+      font-weight: 500;
+    }
+
+    .consult-phone {
+      /* color: #666; */
+      color: #6f6f6f;         /* 흐린 회색 */
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    /* ===== 기관 로고 슬라이드 ===== */
+    .logo-slider-box {
+  max-width: 980px;
+  margin: 40px auto;
+  padding: 10px 0;
+}
+
+.logoSwiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoSwiper img {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(0.2);
+  transition: 0.3s ease;
+}
+
+.logoSwiper img:hover {
+  filter: grayscale(0);
+  transform: scale(1.05);
+}
+
+
+
+    /* ================= FOOTER ================= */
+
+    .footer {
+      background: #f3f1eb;
+      border-top: 1px solid #ded7c4;
+      padding: 28px 24px 34px;
+      color: var(--text-main);
+    }
+
+    .footer-inner {
+      max-width: 1480px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-left {
+      max-width: 70%;
+      font-size: 13px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .footer-logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #c9b48a, #f1e2c2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .footer-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--green-deep);
+    }
+
+    .footer-info {
+      margin: 0;
+      line-height: 1.8;
+      color: var(--text-sub);
+    }
+
+    .footer-right {
+      text-align: right;
+      font-size: 13px;
+    }
+
+    .footer-call-title {
+      color: var(--green-main);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .footer-call-number {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--green-deep);
+      margin-bottom: 10px;
+    }
+
+    .kakao-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: #ffe812;
+      color: #381e1f;
+      font-weight: 600;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    /* 기관로고 (footer 위에) */
+
+    .footer-logos {
+      background: var(--white);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0;
+    }
+
+    .footer-logos-inner {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      overflow-x: auto;
+    }
+
+    .footer-logo-chip {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid #f0f0f0;
+      background: #ffffff;
+      font-size: 12px;
+      color: var(--text-sub);
+      white-space: nowrap;
+    }
+
+    /* ================= FLOATING SOCIAL ================= */
+
+    .social_icon_zone {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 100;
+    }
+
+    .social_icon_zone div {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--white);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .social_icon_zone div:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+
+    .social_icon_zone h5 {
+      margin: 2px 0 0;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green-deep);
+    }
+/* ===== 로그인 모달 ===== */
+.login-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.login-modal {
+  width: 340px;
+  max-width: 92%;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.20);
+  padding: 26px 24px 24px;
+  position: relative;
+  text-align: center;
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+.login-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 15px 0 6px;
+}
+
+.login-subtitle {
+  margin: 0 0 25px;
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.login-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  border: none;
+  background: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #999;
+}
+
+.login-close-btn:hover {
+  color: #555;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #dddddd;
+  background: var(--sand);
+  font-size: 13px;
+}
+
+/* 옵션 줄 (비번저장 / 보안접속) */
+.login-option-row {
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.login-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  color: var(--text-sub);
+}
+
+.login-option input[type="checkbox"] {
+  display: none;
+}
+
+.login-option-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+/* 체크됐을 때 아이콘 강조 */
+.login-option input[type="checkbox"]:checked + .login-option-icon {
+  border-color: var(--green-main);
+}
+
+    /* 로그인 버튼 */
+    .login-submit-btn {
+      margin-top: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 0;
+      font-size: 14px;
+      font-weight: 600;
+      background: var(--green-main);
+      color: #ffffff;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .login-submit-btn:hover {
+      background: var(--green-deep);
+      transform: translateY(-1px);
+    }
+
+    /* 하단 링크 */
+    .login-links {
+      margin-top: 8px;
+      font-size: 12px;
+    }
+
+    .login-link {
+      color: var(--text-sub);
+      text-decoration: none;
+    }
+
+    .login-link:hover {
+      text-decoration: underline;
+    }
+
+    .login-divider {
+      margin: 14px 0 10px;
+      border-top: 1px solid #eee;
+    }
+
+    .login-bottom {
+      font-size: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .login-bottom a {
+      font-weight: 600;
+      text-decoration: underline;
+      color: var(--text-main);
+    }
+
+    /* 모달 공통 애니메이션 (회원가입이랑 같이 사용) */
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    /* ===== 회원가입 모달 ===== */
+    .signup-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      display: none;                 /* 기본은 숨김 */
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .signup-modal {
+      width: 340px;
+      max-width: 92%;
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.20);
+      padding: 26px 22px 24px;
+      position: relative;
+      text-align: center;
+      animation: modalFadeIn 0.25s ease-out;
+    }
+
+    .signup-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 20px 0 30px;
+    }
+
+    .signup-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      border: none;
+      background: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #999;
+    }
+
+    .signup-close-btn:hover {
+      color: #555;
+    }
+
+    .signup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .signup-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #dddddd;
+      background: var(--sand);
+      font-size: 13px;
+      margin: 1px 0;      /* 위아래 여백 추가 */
+    }
+
+    /* 약관 영역 */
+    .signup-terms-row {
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .signup-terms-left {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .signup-terms-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .signup-terms-right input[type="checkbox"] {
+      width: 14px;
+      height: 14px;
+    }
+    /* 버튼: 사이트 톤 맞춰서 포레스트 그린 */
+    .signup-submit-btn {
+      margin-top: 25px;
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 0;
+      font-size: 14px;
+      font-weight: 600;
+      background: var(--green-main);
+      color: #ffffff;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .signup-submit-btn:hover {
+      background: var(--green-deep);
+      transform: translateY(-1px);
+    }
+    /* 캡차 영역 */
+    /* 숫자 코드 캡차 영역(앞에 이미 대부분 있음) */
+    .signup-captcha-row {
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      justify-content: space-between;
+    }
+
+    .captcha-label {
+      color: var(--text-sub);
+      white-space: nowrap;
+    }
+
+    .captcha-question {
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+
+    .signup-captcha-input {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid #dddddd;
+      background: #fff;
+      font-size: 12px;
+    }
+
+    /* ✅ honeypot: 화면에서는 완전 숨김 */
+    .hp-wrap {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+
+
+
+    /* 간단한 등장 애니메이션 */
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 1024px) {
+      .page-container {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .sidebar .card {
+        flex: 1 1 240px;
+      }
+      .hot-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+      .header-main {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .main-nav {
+        flex-wrap: wrap;
+        row-gap: 6px;
+      }
+      .footer-inner {
+        flex-direction: column;
+        text-align: left;
+      }
+      .footer-right {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .top-categories {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+      .hot-grid {
+        grid-template-columns: 1fr;
+      }
+      .search-row {
+        flex-direction: column;
+      }
+      .btn-search {
+        width: 100%;
+      }
+      .sidebar {
+        flex-direction: column;
+      }
+    }
+/* 오버레이 전체 */
+.detail-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 처음엔 안 보이게 */
+.detail-overlay.hidden {
+  display: none;
+}
+
+/* 반투명 검은 배경 */
+.detail-overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* 안쪽 컨텐츠 박스 */
+.detail-overlay-content {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  height: 90%;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+/* 닫기 버튼 */
+.detail-overlay-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  z-index: 2;
+  border: none;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* 상세 내용 iframe */
+#detailFrame {
+  width: 100%;
+  height: 100%;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header-wrap">
+    <div class="header-top">
+      <!-- <div>호텔매매 모텔매매 펜션매매 부지매매 빌딩매매 상가매매</div> -->
+       <div>호텔 · 모텔 · 펜션 · 부지 · 빌딩 · 상가   매매   임대</div>
+       <!--  -->
+       <div class="header-top-right">
+        <a href="#" id="openLoginBtn">로그인</a>
+        <a href="#" id="openSignupBtn">회원가입</a>
+      </div>
+    </div>
+    <header class="header-main modern-header">
+      <!-- <a href="mainPage.html" class="logo-area"> -->
+        <a href="/" class="logo-area"></a>
+        <img src="hm-logo.png" alt="모텔코리아 로고" class="logo-icon" />
+    
+        <div class="brand-text-zone">
+          <div class="logo-text-main">모텔코리아</div>
+          <h1 class="sub-headline">
+            호텔·모텔·펜션·빌딩·부지 매매·임대 전문 부동산 플랫폼
+          </h1>
+        </div>
+      </a>
+    </header>
+    
+    <!--
+    <div class="header-main">
+      <div class="logo-mark"></div>
+      <div class="logo-area">
+        <img src="hm-logo.png" alt="모텔코리아 로고" class="logo-icon" />
+        <div>
+          <div class="logo-text-main">모텔코리아</div>
+    
+
+          <h1 class="sub-headline">
+            호텔·모텔·펜션·빌딩·부지 매매·임대 전문 부동산 플랫폼
+          </h1>
+        </div>
+      </div>
+    -->
+    <div class="main-nav-row">
+<nav class="main-nav" aria-label="주요 카테고리">
+    <a href="/hotel">호텔·모텔</a>
+    <a href="/pension">펜션·풀빌라</a>
+    <a href="/building">빌딩·상가</a>      <!-- 나중에 구현 -->
+    <a href="/site">시행부지</a>           <!-- 나중에 구현 -->
+    <a href="/etc">기타 부동산</a>        <!-- 나중에 구현 -->
+    <a href="/support">고객지원</a>       <!-- 나중에 구현 -->
+  </nav>
+       <a class="nav-blog-link" href="https://blog.example.com" target="_blank" rel="noreferrer">블로그 더보기</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- INST LOGOS (TOP STRIP) 
+  <div class="inst-logos">
+    <div class="inst-logos-inner">
+      <div class="inst-logo-item">국토교통부</div>
+      <div class="inst-logo-item">대한민국 법원 인터넷등기소</div>
+      <div class="inst-logo-item">부동산 실거래가 공개시스템</div>
+      <div class="inst-logo-item">SEE:REAL 부동산 정보</div>
+      <div class="inst-logo-item">지방세 wetax</div>
+      <div class="inst-logo-item">한국부동산원 통계정보</div>
+    </div>
+  </div>
+-->
+  <!-- PAGE LAYOUT -->
+  <div class="page-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="card">
+        <div class="visit-label">오늘 방문자</div>
+        <div class="visit-today">402명</div>
+        <div class="visit-total">전체 184,624명</div>
+      </div>
+
+      <div class="card">
+        <div class="call-title">대표번호 CALL CENTER</div>
+        <div class="call-number">02-731-6323</div>
+        <div class="call-desc">연중무휴 24시간 상담</div>
+      </div>
+
+      <div class="card">
+        <input class="input" placeholder="이름" />
+        <input class="input" placeholder="연락처" />
+        <textarea class="input" placeholder="문의내용"></textarea>
+        <button class="btn-primary">상담문의 남기기</button>
+      </div>
+
+      <div class="card">
+        <div class="price-title">금액별 검색</div>
+        <div class="price-item"><span class="label-badge">매매</span> 20억 미만</div>
+        <div class="price-item"><span class="label-badge">매매</span> 20억 이상</div>
+        <div class="price-item"><span class="label-badge">매매</span> 50억 이상</div>
+        <div class="price-item"><span class="label-badge">매매</span> 100억 이상</div>
+        <div class="price-item"><span class="label-badge">매매</span> 300억 이상</div>
+      </div>
+
+      <div class="card">
+        <div class="price-title">지역별 검색</div>
+
+        <div class="region-grid">
+          <!-- 1행 -->
+          <button type="button" class="region-btn" data-region="서울" onclick="onRegionClick(this)">서울</button>
+          <button type="button" class="region-btn" data-region="경기" onclick="onRegionClick(this)">경기</button>
+          <button type="button" class="region-btn" data-region="인천" onclick="onRegionClick(this)">인천</button>
+
+          <!-- 2행 -->
+          <button type="button" class="region-btn" data-region="세종" onclick="onRegionClick(this)">세종</button>
+          <button type="button" class="region-btn" data-region="대전" onclick="onRegionClick(this)">대전</button>
+          <button type="button" class="region-btn" data-region="부산" onclick="onRegionClick(this)">부산</button>
+
+          <!-- 3행 -->
+          <button type="button" class="region-btn" data-region="강원" onclick="onRegionClick(this)">강원</button>
+          <button type="button" class="region-btn" data-region="경남" onclick="onRegionClick(this)">경남</button>
+          <button type="button" class="region-btn" data-region="경북" onclick="onRegionClick(this)">경북</button>
+
+          <!-- 4행 -->
+          <button type="button" class="region-btn" data-region="충청" onclick="onRegionClick(this)">충청</button>
+          <button type="button" class="region-btn" data-region="전남" onclick="onRegionClick(this)">전남</button>
+          <button type="button" class="region-btn" data-region="전북" onclick="onRegionClick(this)">전북</button>
+        </div>
+      </div>
+
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+      <!-- TOP CATEGORIES -->
+<section class="top-categories" aria-label="주요 매물 카테고리">
+  <a class="top-cat" href="h-m-list.html">
+    <div class="top-cat-img" style="background-image:url('main_hotel.png');"></div>
+    <div class="top-cat-label">호텔·모텔</div>
+  </a>
+
+  <a class="top-cat" href="p-b-list.html">
+    <div class="top-cat-img" style="background-image:url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80');"></div>
+    <div class="top-cat-label">펜션·풀빌라</div>
+  </a>
+
+  <a class="top-cat" href="building-list.html">
+    <div class="top-cat-img" style="background-image:url('main_building.png');"></div>
+    <div class="top-cat-label">빌딩·상가</div>
+  </a>
+
+  <a class="top-cat" href="site-list.html">
+    <div class="top-cat-img" style="background-image:url('https://images.unsplash.com/photo-1469796466635-455ede028aca?auto=format&fit=crop&w=800&q=80');"></div>
+    <div class="top-cat-label">부지·시행</div>
+  </a>
+</section>
+
+
+      <!-- SEARCH BOX -->
+      <section class="search-box" aria-label="매물 검색">
+        <div class="search-label-row">
+          <span>빠른 매물 검색</span>
+          <span>매물번호 / 지역 / 키워드로 한 번에 찾아보세요</span>
+        </div>
+        <div class="search-row">
+          <select aria-label="구분">
+            <option>구분</option>
+            <option>호텔</option>
+            <option>모텔</option>
+            <option>펜션·풀빌라</option>
+            <option>빌딩·상가</option>
+            <option>부지·시행</option>
+          </select>
+          <select aria-label="거래유형">
+            <option>매매/임대</option>
+            <option>매매</option>
+            <option>임대</option>
+          </select>
+          <select aria-label="시도">
+            <option>시/도</option>
+            <option>서울</option>
+            <option>경기</option>
+            <option>인천</option>
+            <option>강원</option>
+          </select>
+          <select aria-label="지역">
+            <option>읍/면/동</option>
+          </select>
+          <button class="btn-search">검색 🔍</button>
+        </div>
+        <input class="keyword-input" placeholder="예) 강남 호텔, 인천 바다뷰 모텔, 30억 이하 수익형" />
+        <div class="listing-number-box" aria-label="매물번호 검색">
+          <div class="listing-number-head">
+            <span>매물번호 검색</span>
+            <span>등록된 매물번호를 바로 조회하세요</span>
+          </div>
+          <div class="listing-number-row">
+            <select aria-label="매물 구분">
+              <option>구분</option>
+              <option>호텔</option>
+              <option>모텔</option>
+              <option>펜션·풀빌라</option>
+              <option>빌딩·상가</option>
+              <option>부지·시행</option>
+            </select>
+            <input type="text" placeholder="매물번호를 입력하세요 (예: A1050)" />
+            <button class="btn-listing-search">매물번호 검색</button>
+          </div>
+        </div>
+      </section>
+      <section class="seo-text"> <!--  seo 항목 5번째 -->
+        <p> 
+          모텔코리아는 호텔·모텔·펜션·풀빌라 등 숙박업 부동산에 특화된 매물 검색 플랫폼입니다. <br>
+          전국 지역별 프리미엄 매물을 실시간으로 제공하며, 금액대별·유형별·매물번호 검색을 통해
+          투자 목적에 맞는 최적의 매물을 빠르게 찾을 수 있습니다.
+        </p>
+      </section>
+      
+      <!-- HOT 매물 -->
+      <section aria-label="HOT 매물">
+        <h2 class="section-title">
+          HOT 매물 <span>실시간 인기 매물입니다</span>
+        </h2>
+      
+        <div class="hot-grid">
+      
+          <!-- 1 -->
+          <article class="hot-card"
+                   data-type="임대"
+                   data-no="11978"
+                   data-category="hotel-motel"
+                   onclick="goMulgeon(this)">
+            <div class="ribbon">임대</div>
+            <h3 class="hot-title">[강원] 리모델링 완료 호텔</h3>
+            <p class="hot-desc">보증금 1억 / 월세 550만 · 객실 40실</p>
+          </article>
+      
+          <!-- 2 -->
+          <article class="hot-card"
+                   data-type="매매"
+                   data-no="12001"
+                   data-category="hotel-motel"
+                   onclick="goMulgeon(this)">
+            <div class="ribbon">매매</div>
+            <h3 class="hot-title">[용인] 수익률 좋은 비즈니스 호텔</h3>
+            <p class="hot-desc">매매 45억 / 실투자 15억 · 객실 52실</p>
+          </article>
+      
+          <!-- 3 -->
+          <article class="hot-card"
+                   data-type="임대"
+                   data-no="12045"
+                   data-category="pension"
+                   onclick="goMulgeon(this)">
+            <div class="ribbon">임대</div>
+            <h3 class="hot-title">[부산] 해운대 오션뷰 풀빌라</h3>
+            <p class="hot-desc">보증금 2억 / 월세 900만 · 독채 6동</p>
+          </article>
+      
+          <!-- 4 -->
+          <article class="hot-card"
+                   data-type="매매"
+                   data-no="12101"
+                   data-category="hotel-motel"
+                   onclick="goMulgeon(this)">
+            <div class="ribbon">매매</div>
+            <h3 class="hot-title">[서울] 강남역 인근 호텔</h3>
+            <p class="hot-desc">매매 110억 · 객실 70실</p>
+          </article>
+      
+          <!-- 5 -->
+          <article class="hot-card"
+                   data-type="임대"
+                   data-no="12124"
+                   data-category="hotel-motel"
+                   onclick="goMulgeon(this)">
+            <div class="ribbon">임대</div>
+            <h3 class="hot-title">[제주] 관광지 인근 부티크 호텔</h3>
+            <p class="hot-desc">보증금 3억 / 월세 700만 · 객실 25실</p>
+          </article>
+      
+          <!-- 6 -->
+          <article class="hot-card"
+                   data-type="매매"
+                   data-no="12188"
+                   data-category="hotel-motel"
+                   onclick="goMulgeon(this)">
+            <div class="ribbon">매매</div>
+            <h3 class="hot-title">[대구] 리모델링된 모텔 매매</h3>
+            <p class="hot-desc">매매 30억 / 객실 40실</p>
+          </article>
+      
+          <!-- 7 -->
+          <article class="hot-card"
+                   data-type="임대"
+                   data-no="12233"
+                   data-category="pension"
+                   onclick="goMulgeon(this)">
+            <div class="ribbon">임대</div>
+            <h3 class="hot-title">[남해] 바다뷰 펜션</h3>
+            <p class="hot-desc">보증금 8천 / 월세 250만</p>
+          </article>
+      
+          <!-- 8 -->
+          <article class="hot-card"
+                   data-type="매매"
+                   data-no="12290"
+                   data-category="hotel-motel"
+                   onclick="goMulgeon(this)">
+            <div class="ribbon">매매</div>
+            <h3 class="hot-title">[광주] 신축 모텔</h3>
+            <p class="hot-desc">매매 38억 · 객실 48실</p>
+          </article>
+      
+        </div>
+      </section>
+      
+
+ <!-- 기타 매물 -->
+<section class="table-box" aria-label="기타 매물">
+  <h2 class="section-title" style="margin-top:0;">기타 매물</h2>
+
+  <table class="listing-table">
+    <thead>
+      <tr>
+        <th>거래형태</th>
+        <th>매물번호</th>
+        <th>제목</th>
+        <th>금액</th>
+        <th>객실</th>
+        <th>평균매출</th>
+        <th>소재지</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="deal-badge deal-sale">매매</span></td>
+        <td>A-10004</td>
+        <td class="td-title">전주혁신도시 호텔매매, 감정가이하</td>
+        <td class="td-amount">매매가 87억<br>실인수수 7</td>
+        <td class="td-rooms">56 객실</td>
+        <td class="td-sales">15,000만</td>        
+        <td>전북 전주시</td>
+      </tr>
+
+      <tr>
+        <td><span class="deal-badge deal-rent">임대</span></td>
+        <td>B-10046</td>
+        <td>★안산! 시설 깔끔! 직영 추천 매물★</td>
+        <td class="td-amount">보증금 3억<br>월세 1,100만</td>
+        <td class="td-rooms">32 객실</td>
+        <td class="td-sales">4,000~4,500만</td>
+        <td>경기 안산시</td>
+      </tr>
+
+      <tr>
+        <td><span class="deal-badge deal-rent">임대</span></td>
+        <td>B-10045</td>
+        <td>★광주 주변 듬뿍! 꾸준한 매출★</td>
+        <td class="td-amount">보증금 1억<br>월세 500만</td>
+        <td class="td-rooms">20 객실</td>
+        <td class="td-sales">1,500~2,000만</td>
+        <td>광주 북구</td>
+      </tr>
+
+      <!-- 토지 예시 -->
+      <tr>
+        <td><span class="deal-badge deal-land">토지</span></td>
+        <td>L-20012</td>
+        <td>강원 바다인근 관광지 부지 매매</td>
+        <td class="td-amount">매매가 25억</td>
+        <td class="td-rooms">-</td>
+        <td class="td-sales">-</td>
+        
+        <td>강원 동해시</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+      <section class="notice-box" aria-label="실시간 상담문의">
+        <h2 class="section-title" style="margin-top:0;">실시간 상담문의</h2>
+      
+        <div class="consult-item">
+          <span class="consult-badge">상담문의</span>
+          <span class="consult-title">펜션매매</span>
+          <span class="consult-phone">원○○ · 0*7-****-****</span>
+        </div>
+      
+        <div class="consult-item">
+          <span class="consult-badge">상담문의</span>
+          <span class="consult-title">이거매물 남아있는지 부탁드립니다</span>
+          <span class="consult-phone">김○○ · 0*4-****-****</span>
+        </div>
+      
+        <div class="consult-item">
+          <span class="consult-badge">상담문의</span>
+          <span class="consult-title">호텔 모텔 매수하려고 해요</span>
+          <span class="consult-phone">오○○ · 0*8-****-****</span>
+        </div>
+      
+        <div class="consult-item">
+          <span class="consult-badge">상담문의</span>
+          <span class="consult-title">삼담문의바랍니다</span>
+          <span class="consult-phone">김○○ · 0*2-****-****</span>
+        </div>
+      
+        <div class="consult-item">
+          <span class="consult-badge">상담문의</span>
+          <span class="consult-title">담양군 소규모관광단지 매도원함</span>
+          <span class="consult-phone">김○○ · 0*4-****-****</span>
+        </div>
+      
+      </section>
+      <section class="logo-slider-box">
+        <div class="swiper logoSwiper">
+          <div class="swiper-wrapper">
+            <!-- 15개 로고 -->
+            <div class="swiper-slide"><img src="./img/logo_01.png" alt=""></div>
+            <div class="swiper-slide"><img src="./img/logo_02.png" alt=""></div>
+            <div class="swiper-slide"><img src="./img/logo_03.png" alt=""></div>
+            <div class="swiper-slide"><img src="./img/logo_04.png" alt=""></div>
+            <div class="swiper-slide"><img src="./img/logo_05.png" alt=""></div>
+            <div class="swiper-slide"><img src="./img/logo_06.png" alt=""></div>
+            <div class="swiper-slide"><img src="./img/logo_07.png" alt=""></div>
+            <div class="swiper-slide"><img src="./img/logo_08.png" alt=""></div>
+            <div class="swiper-slide"><img src="./img/logo_09.png" alt=""></div>
+            <div class="swiper-slide"><img src="./img/logo_10.png" alt=""></div>
+            <div class="swiper-slide"><img src="./img/logo_11.png" alt=""></div>
+            <div class="swiper-slide"><img src="./img/logo_12.png" alt=""></div>
+            <div class="swiper-slide"><img src="./img/logo_13.png" alt=""></div>
+            <div class="swiper-slide"><img src="./img/logo_14.png" alt=""></div>
+            <div class="swiper-slide"><img src="./img/logo_15.png" alt=""></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+ 
+  
+  <!-- FOOTER 기관 로고 
+  <div class="footer-logos">
+    <div class="footer-logos-inner">
+      <div class="footer-logo-chip">국토교통부</div>
+      <div class="footer-logo-chip">대한민국 법원 인터넷등기소</div>
+      <div class="footer-logo-chip">부동산거래관리시스템</div>
+      <div class="footer-logo-chip">SEE:REAL</div>
+      <div class="footer-logo-chip">wetax</div>
+      <div class="footer-logo-chip">한국부동산원</div>
+    </div>
+  </div> -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">
+          <div class="footer-logo-mark">H</div>
+          <div class="footer-name">모텔코리아</div><br>
+          <div>모텔코리아는 호텔 매매, 모텔 매매, 펜션 매매, 풀빌라 매매,
+            호텔 임대, 모텔 임대 등 전국 숙박업 부동산 매매·임대 전문 플랫폼입니다.            
+            </div>
+        </div>
+        <p class="footer-info">
+          회사명 : 더글로벌코리아 부동산중개법인 주식회사<br>
+          대표자 : 김경용 ㅣ 주소 : 서울특별시 중구 남대문로117, 7층 (다동 동아빌딩)<br>
+          부동산 번호 : 11140-2018-00053<br>
+          전화 : 02-731-6323 ㅣ 팩스 : 02-744-4567<br>
+          부동산에 기술을 더하는 사람들 © BUGISA, Inc. All rights reserved.
+        </p>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-call-title">대표전화 CALL CENTER</div>
+        <div class="footer-call-number">02-731-6323</div>
+        <a href="https://pf.kakao.com" class="kakao-btn">카카오톡 상담 바로가기</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING KAKAO & CALL -->
+  <div class="social_icon_zone">
+    <div onclick="window.open('https://open.kakao.com/o/','_blank');" style="background-color:#FEE500;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:10px;cursor:pointer;">
+      <img src="https://developers.kakao.com/tool/resource/static/img/about/logos/kakaotalk/kakaotalk_symbol.svg"
+      alt="카카오톡" style="width:28px;height:28px;">
+      <h5 style="margin:0;color:#3B1E1E;">오픈채팅</h5> <!--카카오톡-->
+    </div>
+    <div onclick="location.href='tel:02-731-6323'">
+      <img src="https://img.icons8.com/ios-filled/50/1e3d33/phone.png" alt="전화" style="width:26px;height:auto;" />
+      <h5>전화</h5>
+    </div>
+  </div>
+
+<!-- 로그인 모달 -->
+<div class="login-modal-overlay" id="loginModal">
+  <div class="login-modal">
+    <button type="button" class="login-close-btn" id="loginCloseBtn">✕</button>
+
+    <h2 class="login-title">로그인</h2>
+    <p class="login-subtitle">홈페이지 방문을 환영합니다.</p>
+
+    <form action="/login" method="post" class="login-form">
+      <input type="phone" name="phone" class="login-input" placeholder="아이디(핸드폰 번호)" required>
+      <input type="password" name="password" class="login-input" placeholder="비밀번호" required>
+
+      <div class="login-option-row">
+        <label class="login-option">
+          <input type="checkbox" name="remember">
+          <span class="login-option-icon">✔</span>
+          <span>비밀번호 저장</span>
+        </label>
+
+        <label class="login-option">
+          <input type="checkbox" name="secure" checked>
+          <span class="login-option-icon">🔒</span>
+          <span>보안접속</span>
+        </label>
+      </div>
+
+      <button type="submit" class="login-submit-btn">로그인</button>
+
+      <div class="login-links">
+        <a href="#" class="login-link">비밀번호를 잊어버리셨나요?</a>
+      </div>
+
+      <div class="login-divider"></div>
+
+      <div class="login-bottom">
+        <span>아직 회원이 아니신가요?</span>
+        <!-- 클릭 시: 로그인 닫고 회원가입 모달 열기 -->
+        <a href="#" id="goSignupLink">가입하기</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+  <!-- 회원가입 모달 -->
+<div class="signup-modal-overlay" id="signupModal">
+  <div class="signup-modal">
+    <button type="button" class="signup-close-btn" id="signupCloseBtn">✕</button>
+
+    <h2 class="signup-title">회원가입</h2>
+
+    <form action="/signup" method="post" class="signup-form">
+      <input type="text" name="name" class="signup-input" placeholder="이름" required>
+      <input type="phone" name="phone" class="signup-input" placeholder="아이디(핸드폰 번호)" required>
+      <input type="password" name="password" class="signup-input" placeholder="비밀번호" required>
+      <input type="password" name="password_confirm" class="signup-input" placeholder="비밀번호 확인" required>
+
+      <div class="signup-terms-row">
+        <span class="signup-terms-left">개인정보 정책</span>
+        <label class="signup-terms-right">
+          <input type="checkbox" name="agree" required>
+          <span>이용약관 동의</span>
+        </label>
+      </div>
+      <!-- ✅ 숫자 코드형 캡차 -->
+      <div class="signup-captcha-row">
+        <span class="captcha-label">자동가입방지확인</span>
+        <!-- 서버에서 내려주는 4자리 숫자 코드. ejs 버전으로 추후 재수정 필요
+       -->
+        <span class="captcha-question" id="captchaCode"></span>
+
+        <input type="text" name="captcha" class="signup-captcha-input"
+              placeholder="위 숫자 입력" required>
+      </div>
+
+      <!-- ✅ honeypot (사용자에겐 안 보이는 필드) -->
+      <div class="hp-wrap">
+        <label>Website(비워두세요)</label>
+        <input type="text" name="website">
+      </div>
+
+      <button type="submit" class="signup-submit-btn" disabled>회원가입</button>
+    </form>
+  </div>
+</div>
+<!-- 🔹 매물 상세 오버레이 -->
+<div id="detailOverlay" class="detail-overlay hidden">
+  <div class="detail-overlay-backdrop" onclick="closeDetailOverlay()"></div>
+
+  <div class="detail-overlay-content">
+    <button class="detail-overlay-close" onclick="closeDetailOverlay()">&times;</button>
+
+    <!-- mulgeonPage.html을 띄울 iframe -->
+    <iframe id="detailFrame" src="" frameborder="0"></iframe>
+  </div>
+</div>
+
+</body>
+<script>
+  var swiper = new Swiper(".logoSwiper", {
+    slidesPerView: 5,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+      delay: 1800,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      320: { slidesPerView: 2 },
+      480: { slidesPerView: 3 },
+      768: { slidesPerView: 4 },
+      1024: { slidesPerView: 5 }
+    }
+  });
+
+    // ===== 로그인 폼 초기화 함수 =====
+    function resetLoginForm() {
+    const loginForm = document.querySelector('.login-form');
+    if (!loginForm) return;
+
+    // 전체 값 리셋
+    loginForm.reset();
+
+    // 보안접속은 기본 체크 상태로 다시 켜주기
+    const secureCheckbox = loginForm.querySelector('input[name="secure"]');
+    if (secureCheckbox) {
+      secureCheckbox.checked = true;
+    }
+  }
+  // === 매물 상세 오버레이 열기 ===
+  function goMulgeon(cardEl) {
+    const no = cardEl.dataset.no;
+    const category = cardEl.dataset.category || 'hotel-motel';
+    if (!no) return;
+
+    const overlay = document.getElementById('detailOverlay');
+    const frame   = document.getElementById('detailFrame');
+
+    // mulgeonPage.html을 iframe 안에 로드
+    //frame.src = `mulgeonPage.html?no=${encodeURIComponent(no)}&category=${encodeURIComponent(category)}`;
+    frame.src = `/detail/${encodeURIComponent(no)}?category=${encodeURIComponent(category)}`;
+
+    // 오버레이 보이게
+    overlay.classList.remove('hidden');
+
+    // 스크롤 잠그고 싶으면:
+    document.body.style.overflow = 'hidden';
+  }
+
+  // === 오버레이 닫기 ===
+  function closeDetailOverlay() {
+    const overlay = document.getElementById('detailOverlay');
+    const frame   = document.getElementById('detailFrame');
+
+    overlay.classList.add('hidden');
+    // 성능 위해 iframe 비워주기 (옵션)
+    frame.src = '';
+
+    document.body.style.overflow = '';
+  }
+
+  // ===== 로그인 모달 열고 닫기 =====
+  const openLoginBtn = document.getElementById('openLoginBtn');
+  const loginModal   = document.getElementById('loginModal');
+  const loginCloseBtn = document.getElementById('loginCloseBtn');
+  const openSignupBtn = document.getElementById('openSignupBtn');
+  const signupModal   = document.getElementById('signupModal');
+  const signupCloseBtn = document.getElementById('signupCloseBtn');
+
+  // ===== 로그인 모달에서 "가입하기" 누르면 회원가입 모달 열기 =====
+  const goSignupLink = document.getElementById('goSignupLink');
+
+
+  if (openLoginBtn && loginModal && loginCloseBtn) {
+    openLoginBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      resetLoginForm();  
+      loginModal.style.display = 'flex';
+    });
+
+    loginCloseBtn.addEventListener('click', function () {
+      loginModal.style.display = 'none';
+    });
+
+    loginModal.addEventListener('click', function (e) {
+      if (e.target === loginModal) {
+        loginModal.style.display = 'none';
+      }
+    });
+  }
+
+  //가입하기 클릭 시 회원가입으로 이동
+  if (goSignupLink && loginModal && signupModal) {
+    goSignupLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      loginModal.style.display = 'none';
+      signupModal.style.display = 'flex';
+    });
+  }
+
+
+
+  // ===== 회원가입 모달 열고 닫기 =====
+
+  function resetSignupForm() {
+    if (!signupForm) return;
+    signupForm.reset();
+    if (submitBtn) submitBtn.disabled = true;
+  }
+
+  if (openSignupBtn && signupModal && signupCloseBtn) {
+    openSignupBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      resetSignupForm();              // 열 때 초기화
+      signupModal.style.display = 'flex';
+    });
+
+    signupCloseBtn.addEventListener('click', function () {
+      resetSignupForm();              // 닫을 때도 초기화
+      signupModal.style.display = 'none';
+    });
+
+    // 오버레이 클릭 시 닫기
+    signupModal.addEventListener('click', function (e) {
+      if (e.target === signupModal) {
+        resetSignupForm();
+        signupModal.style.display = 'none';
+      }
+    });
+  }
+  // ===== 회원가입 폼 검증 =====
+  const signupForm = document.querySelector('.signup-form');
+  const signupInputs = signupForm ? signupForm.querySelectorAll('.signup-input, .signup-captcha-input') : [];
+  const agreeCheckbox = signupForm ? signupForm.querySelector('input[name="agree"]') : null;
+  const submitBtn = signupForm ? signupForm.querySelector('.signup-submit-btn') : null;
+
+  function toggleSubmitState() {
+    if (!submitBtn) return;
+    const allFilled = Array.from(signupInputs).every(input => input.value.trim() !== '');
+    const agreed = agreeCheckbox && agreeCheckbox.checked;
+    submitBtn.disabled = !(allFilled && agreed);
+  }
+
+  if (signupForm && agreeCheckbox && submitBtn) {
+    signupInputs.forEach(input => input.addEventListener('input', toggleSubmitState));
+    agreeCheckbox.addEventListener('change', toggleSubmitState);
+
+    signupForm.addEventListener('submit', function (e) {
+      if (!agreeCheckbox.checked) {
+        e.preventDefault();
+        alert('이용약관에 동의해주세요.');
+        return;
+      }
+      const allFilled = Array.from(signupInputs).every(input => input.value.trim() !== '');
+      if (!allFilled) {
+        e.preventDefault();
+      }
+    });
+  }
+   // 간단 4자리 숫자 캡차 (프론트 테스트용)
+   const captchaSpan = document.getElementById('captchaCode');
+  let captchaCode = null;
+
+  if (captchaSpan) {
+    captchaCode = Math.floor(Math.random() * 9000) + 1000; // 1000~9999
+    captchaSpan.textContent = captchaCode;
+  }
+
+  // 프론트에서만 1차 체크 (진짜 보안용은 아님, 나중에 서버에서 다시 체크해야 함)
+  if (signupForm) {
+    signupForm.addEventListener('submit', function (e) {
+      const userValue = signupForm.querySelector('input[name="captcha"]').value.trim();
+      if (String(userValue) !== String(captchaCode)) {
+        e.preventDefault();
+        alert('자동가입방지 숫자를 정확히 입력해 주세요.');
+      }
+    });
+  }
+
+</script>
+
+  
+</html>
