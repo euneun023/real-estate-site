@@ -177,6 +177,9 @@
       background: linear-gradient(135deg, #fff2e4, #ffe0d0);
       border: 1px solid #ffd2b8;
       min-width: 210px;
+      /* 🔹 추가 */
+      margin-left: auto;   /* 항상 오른쪽으로 밀기 */
+      flex-shrink: 0;      /* 줄어들지 않게 */
     }
 
     .price-highlight strong {
@@ -788,14 +791,15 @@
       .similar-list {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
+      /* 🔹 더 이상 column으로 바꾸지 않기 */
       .page-title-wrap {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: flex-end;
       }
 
+      /* 🔹 인쇄/모바일에서도 계속 오른쪽 유지 */
       .price-highlight {
-        text-align: left;
+        text-align: right;
       }
     }
 
@@ -884,6 +888,98 @@
 .floor-info-table td {
   text-align: center;      /* 안의 글자도 가운데 */
 }
+
+/* 인쇄 버튼용 (이미 있으면 생략 가능) */
+.detail-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.print-btn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  background: #f8f8f8;
+  font-size: 12px;
+  cursor: pointer;
+}
+.print-btn:hover {
+  background: #eee;
+}
+
+/* 🔹 인쇄 전용 스타일 */
+@media print {
+  /* 오른쪽 사이드(중개사, 추가 문의, 관심 매물) 통째로 숨김 */
+  .detail-side {
+    display: none !important;
+  }
+
+  /* 레이아웃을 1컬럼으로 변경해서 왼쪽 본문이 전체 사용 */
+  .detail-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* 페이지 하단 안내문도 출력 안 되게 */
+  .page-footer {
+    display: none !important;
+  }
+
+  /* 인쇄 버튼 영역 숨기기 (있다면) */
+  .detail-toolbar,
+  .print-btn {
+    display: none !important;
+  }
+
+  /* 배경/여백 정리 */
+  body {
+    background: #ffffff;
+    margin: 0;
+  }
+}
+/* 매물번호 + 공유/인쇄 바 */
+.detail-meta-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #666;
+  gap: 8px;
+  flex-wrap: wrap; /* 화면 좁을 때는 버튼이 다음 줄로 내려가게 */
+}
+
+.detail-meta-text {
+  flex: 1 1 auto;
+}
+
+.detail-meta-actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* 공유/인쇄 버튼 스타일 */
+.meta-btn {
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.meta-btn:hover {
+  background: #eee;
+}
+
+/* 인쇄 시 버튼 숨기기 */
+@media print {
+  .detail-meta-actions {
+    display: none !important;
+  }
+}
+
+
   </style>
 </head>
 <body>
@@ -903,7 +999,7 @@
       </div>
     </div>
   </header>
-
+  
   <div class="page-wrap">
     <!-- 위치 -->
     <div class="top-breadcrumb">
@@ -913,15 +1009,27 @@
     <!-- 타이틀/가격 -->
     <div class="page-title-wrap">
       <div class="page-title-main">
-    
-<div style="padding: 8px 12px; font-size: 12px; color: #666;">
-  매물번호: <strong><%= id %></strong>
-  <% if (category) { %>
-    &nbsp; | &nbsp; 카테고리: <%= category %>
-  <% } %>
-</div>
 
-        <!-- 🔹 매물번호 표시 줄 추가 -->
+    <!-- 매물번호 + 버튼 줄 -->
+    <div class="detail-meta-bar">
+      <div class="detail-meta-text">
+        매물번호: <strong><%= id %></strong>
+        <% if (category) { %>
+          &nbsp; | &nbsp; 카테고리: <%= category %>
+        <% } %>
+      </div>
+
+      <div class="detail-meta-actions">
+        <button type="button" class="meta-btn" onclick="shareListing()">
+          🔗 공유하기
+        </button>
+        <button type="button" class="meta-btn" onclick="window.print()">
+          🖨 인쇄하기
+        </button>
+      </div>
+    </div>
+
+        <!-- 🔹 매물번호 표시 줄 추가 
         <div class="mulgeon-no-row">
           매물번호 : <span id="mulgeonNo"></span>
         </div>
@@ -931,7 +1039,7 @@
           <span class="tag-pill gray" id="mulgeonArea">강원 · 평창</span>
           <span class="tag-pill gray" id="mulgeonCategory">호텔 · 콘도</span>
         </div>
-    
+    -->
         <div class="page-title" id="mulgeonTitle">
           [평창 스키장 도보 3분] 신축급 리모델링 호텔 매매
         </div>
@@ -1504,6 +1612,33 @@
        titleEl.textContent = "상세 정보 준비 중입니다.";
      }
    }
+
+   function shareListing() {
+    const url = window.location.href;
+    const titleEl = document.querySelector('.detail-title'); // 상세 제목 클래스에 맞게 수정
+    const title = titleEl ? titleEl.innerText : '매물 정보';
+
+    if (navigator.share) {
+      // 모바일/지원 브라우저: 시스템 공유 사용
+      navigator.share({ title, url }).catch(function (err) {
+        // 사용자가 취소한 경우 등은 그냥 무시
+        console.log('share cancelled or failed', err);
+      });
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      // 공유 API 없으면 링크 복사
+      navigator.clipboard.writeText(url)
+        .then(function () {
+          alert('현재 페이지 링크가 클립보드에 복사되었습니다.');
+        })
+        .catch(function () {
+          alert('링크 복사에 실패했습니다. 주소창의 URL을 직접 복사해 주세요.');
+        });
+    } else {
+      // 아주 구형 브라우저
+      alert('공유 기능을 지원하지 않는 브라우저입니다.\n주소창의 URL을 직접 복사해 주세요.');
+    }
+  }
+  
 </script>
 </body>
 

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>매물 등록</title>
+  <style>
+    body { font-family: 'Noto Sans KR', sans-serif; padding: 30px; }
+    h2 { margin-top: 40px; }
+    .row { margin-bottom: 10px; }
+    label { display: block; font-size: 13px; margin-bottom: 4px; }
+    input, select, textarea {
+      padding: 8px; width: 320px; margin-right: 5px;
+    }
+    table { border-collapse: collapse; margin-top: 10px; }
+    table th, table td { padding: 8px 10px; border: 1px solid #ddd; }
+    .btn { padding: 6px 14px; background:#222; color:#fff; cursor:pointer; border:none; }
+    .btn-yellow { background:#f2c94c; color:#000;}
+    .add-row-btn { margin-top: 6px; padding:4px 10px; }
+  </style>
+</head>
+<body>
+
+<h1>매물 등록</h1>
+
+<!-- ============= 1. 기본 정보 ============= -->
+<h2>1. 기본 정보</h2>
+
+<div class="row">
+  <label>주소</label>
+  <input id="address" type="text" style="width:420px;">
+  <button class="btn-yellow" type="button" onclick="autoFill()">자동입력</button>
+</div>
+
+<div class="row">
+  <label>거래 유형</label>
+  <select id="dealType">
+    <option>매매</option>
+    <option>임대</option>
+  </select>
+</div>
+
+<div class="row">
+  <label>매물 종류</label>
+  <select id="buildingType">
+    <option>호텔</option>
+    <option>모텔</option>
+    <option>펜션</option>
+    <option>상가</option>
+    <option>빌딩</option>
+    <option>토지</option>
+  </select>
+</div>
+
+<div class="row">
+  <label>매매가 (원)</label>
+  <input id="price"/>
+</div>
+
+<div class="row">
+  <label>면적 정보</label>
+  대지면적(㎡): <input id="landArea" style="width:100px;">
+  건축면적(㎡): <input id="archArea" style="width:100px;">
+  연면적(㎡): <input id="totArea" style="width:100px;">
+</div>
+
+<div class="row">
+  <label>층정보</label>
+  지상층수: <input id="groundFloors" style="width:80px;">
+  지하층수: <input id="undergroundFloors" style="width:80px;">
+</div>
+
+<div class="row">
+  <label>월매출</label>
+  <input id="monthlySales">
+</div>
+
+<div class="row">
+  <label>방향(동/서/남/북)</label>
+  <input id="direction">
+</div>
+
+<div class="row">
+  <label>객실 수 / 화장실 수</label>
+  <input id="roomCnt" placeholder="객실수" style="width:100px;">
+  <input id="bathCnt" placeholder="화장실수" style="width:100px;">
+</div>
+
+<div class="row">
+  <label>용도지역</label>
+  <input id="useDistrict" />
+</div>
+
+<div class="row">
+  <label>주용도</label>
+  <input id="mainPurps" />
+</div>
+
+<div class="row">
+  <label>주차대수</label>
+  <input id="parkingCnt" />
+</div>
+
+<div class="row">
+  <label>엘리베이터 수</label>
+  <input id="elevCnt" />
+</div>
+
+<div class="row">
+  <label>필지수</label>
+  <input id="pnuCnt" />
+</div>
+
+<div class="row">
+  <label>사용승인일</label>
+  <input id="useAprDay" />
+</div>
+
+<div class="row">
+  <label>매물 등록일</label>
+  <input id="regDate" type="date"/>
+</div>
+
+<div class="row">
+  <label>평당가 (자동계산)</label>
+  <input id="pricePerPyeong" readonly />
+</div>
+
+
+<!-- ============= 2. 건물 정보 ============= -->
+<h2>2. 건물 정보</h2>
+
+<div class="row">
+  <label>주구조</label>
+  <input id="mainStruct" />
+</div>
+
+<div class="row">
+  <label>건축면적(㎡)</label>
+  <input id="archArea2" />
+</div>
+
+<div class="row">
+  <label>주용도</label>
+  <input id="mainPurps2" />
+</div>
+
+<div class="row">
+  <label>용적률 산정 연면적(㎡)</label>
+  <input id="volRateArea" />
+</div>
+
+
+<!-- ============= 3. 층별 용도 및 면적 ============= -->
+<h2>3. 층별 용도 및 면적</h2>
+
+<table id="floorTable">
+  <thead>
+    <tr>
+      <th>층</th>
+      <th>주용도</th>
+      <th>기타용도</th>
+      <th>면적(㎡)</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<button class="btn add-row-btn" onclick="addFloorRow()">+ 층 추가</button>
+
+
+<!-- ============= 4. 토지정보 ============= -->
+<h2>4. 토지 정보</h2>
+
+<div class="row">
+  <label>개별공시지가(원/㎡)</label>
+  <input id="pblntfPclnd" />
+</div>
+
+<div class="row">
+  <label>용도지역</label>
+  <input id="useDistrict2" />
+</div>
+
+
+<!-- ============= 5. 토지이용계획 ============= -->
+<h2>5. 토지이용계획</h2>
+
+<h3>국토의 계획 및 이용에 관한 법률</h3>
+<div class="row">
+  <label>포함</label>
+  <textarea id="includeNatLaw" style="width:600px;height:60px;"></textarea>
+</div>
+
+<div class="row">
+  <label>저촉</label>
+  <textarea id="conflictNatLaw" style="width:600px;height:60px;"></textarea>
+</div>
+
+<div class="row">
+  <label>접합</label>
+  <textarea id="contactNatLaw" style="width:600px;height:60px;"></textarea>
+</div>
+
+<h3>기타 법률</h3>
+<div class="row">
+  <label>포함</label>
+  <textarea id="includeOtherLaw" style="width:600px;height:60px;"></textarea>
+</div>
+
+
+<script>
+function addFloorRow() {
+  const table = document.querySelector("#floorTable tbody");
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td><input class="flr"></td>
+    <td><input class="flrMain"></td>
+    <td><input class="flrSub"></td>
+    <td><input class="flrArea"></td>
+  `;
+  table.appendChild(row);
+}
+
+// === 자동입력 함수(백엔드 API 호출) ===
+async function autoFill() {
+  const address = document.getElementById("address").value;
+  if (!address) return alert("주소를 입력해주세요.");
+
+  const res = await fetch("/api/land/autofill", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ address })
+  });
+
+  const data = await res.json();
+  if (data.error) return alert("조회 실패");
+
+  const b = data.building;
+  const p = data.price;
+  const land = data.land;
+
+  // 1. 기본 정보
+  document.getElementById("groundFloors").value = b.grndFlrCnt || "";
+  document.getElementById("undergroundFloors").value = b.ugrdFlrCnt || "";
+  document.getElementById("useAprDay").value = b.useAprDay || "";
+  document.getElementById("parkingCnt").value = b.packingCnt || "";
+  document.getElementById("elevCnt").value = b.elevCnt || "";
+  document.getElementById("mainPurps").value = b.mainPurpsCdNm || "";
+
+  // 2. 건물 정보
+  document.getElementById("mainStruct").value = b.strctCdNm || "";
+  document.getElementById("archArea").value = b.archArea || "";
+  document.getElementById("totArea").value = b.totArea || "";
+  document.getElementById("mainPurps2").value = b.mainPurpsCdNm || "";
+
+  // 3. 토지정보
+  document.getElementById("pblntfPclnd").value = p.pblntfPclnd || "";
+
+  // 4. 토지이용계획
+  document.getElementById("useDistrict").value = land.prposAreaDstrcCodeNm || "";
+  document.getElementById("useDistrict2").value = land.prposAreaDstrcCodeNm || "";
+  document.getElementById("conflictNatLaw").value = land.cnflcAtNm || "";
+}
+</script>
+
+</body>
+</html>
