@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>고객지원 | 모텔코리아</title>
+  <link rel="stylesheet" href="/mainPage.css" />
+
+  <style>
+    /* ===== 고객지원 페이지 전용 스타일 ===== */
+
+    .support-page-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 12px 60px;
+    }
+
+    .support-hero {
+      margin-bottom: 18px;
+      padding: 18px 18px 16px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #fdf7e8, #f3ecd8);
+      border: 1px solid #f0e0b8;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .support-hero-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .support-hero-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+
+    .support-hero-sub {
+      font-size: 12px;
+      color: #9a8654;
+    }
+
+    /* 탭 버튼 영역 */
+    .support-tab-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .support-tab-btn {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid #e2d4b2;
+      background: #f8f2e3;
+      font-size: 13px;
+      cursor: pointer;
+      color: #6b5a3a;
+      transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .support-tab-btn.active {
+      background: #cdb68b;
+      color: #ffffff;
+      border-color: #c4a973;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+      font-weight: 600;
+    }
+
+    .support-tab-btn:hover:not(.active) {
+      background: #f1e7d6;
+    }
+
+    /* 탭 콘텐츠 공통 */
+    .support-tab-panels {
+      margin-top: 18px;
+    }
+
+    .support-tab-panel {
+      display: none;
+    }
+
+    .support-tab-panel.active {
+      display: block;
+    }
+
+    .support-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      padding: 18px 18px 14px;
+      margin-bottom: 16px;
+    }
+
+    .support-card h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .support-card p {
+      margin: 0 0 6px;
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .support-meta-text {
+      font-size: 12px;
+      color: #999;
+      margin-top: 4px;
+    }
+
+    /* 매물 의뢰 목록(표) */
+    .support-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .support-table th,
+    .support-table td {
+      padding: 8px 6px;
+      border-bottom: 1px solid #f1f1f1;
+      text-align: left;
+    }
+
+    .support-table th {
+      font-size: 12px;
+      color: var(--text-sub);
+      background: #faf7f0;
+    }
+
+    .support-label-badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid #e0e0e0;
+      background: #f7f7f7;
+      color: #666;
+    }
+
+    .support-label-badge.sale {
+      background: #fbe9e7;
+      border-color: #f8bdb5;
+      color: #c85a4a;
+    }
+
+    .support-label-badge.buy {
+      background: #e3f2fd;
+      border-color: #90caf9;
+      color: #1565c0;
+    }
+
+    /* 폼 영역 공통 */
+    .support-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 16px;
+      margin-top: 8px;
+    }
+
+    .support-form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .support-form-label {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .support-form-input,
+    .support-form-select,
+    .support-form-textarea {
+      padding: 7px 10px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .support-form-input:focus,
+    .support-form-select:focus,
+    .support-form-textarea:focus {
+      border-color: #c4a973;
+      box-shadow: 0 0 0 1px rgba(196, 169, 115, 0.35);
+    }
+
+    .support-form-textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .support-form-actions {
+      margin-top: 14px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .support-btn {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .support-btn-primary {
+      background: #2b7a4b;
+      border-color: #2b7a4b;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .support-btn-primary:hover {
+      background: #256944;
+    }
+
+    .support-btn-subtle {
+      background: #ffffff;
+    }
+
+    .support-hint {
+      font-size: 12px;
+      color: #999;
+      margin-top: 4px;
+    }
+
+    /* 전하고 싶은 소식 전용 */
+    .support-broadcast-help {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    /* 반응형 */
+    @media (max-width: 900px) {
+      .support-form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 공통 헤더 (다른 페이지와 동일 스타일 유지) -->
+  <header class="header-main modern-header">
+    <div class="logo-area">
+      <a href="/" class="logo-area">
+        <img src="/hm-logo.png" alt="모텔코리아 로고" class="logo-icon" />
+        <div class="brand-text-zone">
+          <div class="logo-text-main">모텔코리아</div>
+          <h1 class="sub-headline">
+            호텔·모텔·펜션·빌딩·부지 매매·임대 전문 부동산 플랫폼
+          </h1>
+        </div>
+      </a>
+    </div>
+
+    <nav class="main-nav" aria-label="주요 카테고리">
+      <a href="/hotel">호텔·모텔</a>
+      <a href="/pension">펜션·풀빌라</a>
+      <a href="/building">빌딩·상가</a>
+      <a href="/site">시행부지</a>
+      <a href="/etc">기타 부동산</a>
+      <a href="/support" class="active">고객지원</a>
+    </nav>
+  </header>
+
+  <main class="support-page-wrap">
+    <!-- 상단 안내 박스 -->
+    <section class="support-hero">
+      <div class="support-hero-title">고객지원 · 의뢰 센터</div>
+      <p class="support-hero-desc">
+        매물 의뢰, 판매/구매 상담, 전하고 싶은 소식까지 모두 한 곳에서 관리합니다.
+      </p>
+      <p class="support-hero-sub">
+        실제 저장/발송 기능은 추후 구현 예정입니다. 현재는 화면 설계와 입력 UI를 먼저 제공합니다.
+      </p>
+
+      <!-- 탭 버튼 -->
+      <div class="support-tab-bar">
+        <button type="button" class="support-tab-btn active" data-target="tab-requests">
+          매물 의뢰 목록
+        </button>
+        <button type="button" class="support-tab-btn" data-target="tab-sell">
+          판매 의뢰서 작성
+        </button>
+        <button type="button" class="support-tab-btn" data-target="tab-buy">
+          구매 의뢰서 작성
+        </button>
+        <button type="button" class="support-tab-btn" data-target="tab-news">
+          전하고 싶은 소식
+        </button>
+      </div>
+    </section>
+
+    <!-- 탭 콘텐츠 -->
+    <section class="support-tab-panels">
+
+      <!-- 1) 매물 의뢰 목록 -->
+      <div class="support-tab-panel active" id="tab-requests">
+        <div class="support-card">
+          <h3>최근 매물 의뢰 목록</h3>
+          <p>고객들이 남긴 판매/구매 의뢰 내용을 확인하고, 개별 연락을 진행할 수 있습니다.</p>
+          <p class="support-meta-text">
+            ※ 현재는 샘플 데이터입니다. DB 연동 후 실제 의뢰 목록이 표시될 예정입니다.
+          </p>
+
+          <table class="support-table" aria-label="매물 의뢰 목록">
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>의뢰 제목</th>
+                <th>지역</th>
+                <th>예상 금액</th>
+                <th>고객명</th>
+                <th>등록일</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="support-label-badge sale">판매</span></td>
+                <td>강원 스키장 인근 모텔 매각 의뢰</td>
+                <td>강원 · 평창</td>
+                <td>20~30억</td>
+                <td>김○○</td>
+                <td>2025-11-20</td>
+              </tr>
+              <tr>
+                <td><span class="support-label-badge buy">구매</span></td>
+                <td>서울/경기권 비즈니스 호텔 매수 희망</td>
+                <td>서울/경기</td>
+                <td>50억 내외</td>
+                <td>이○○</td>
+                <td>2025-11-18</td>
+              </tr>
+              <tr>
+                <td><span class="support-label-badge sale">판매</span></td>
+                <td>부산 해운대 인근 펜션 단지 매각</td>
+                <td>부산 · 해운대</td>
+                <td>30~40억</td>
+                <td>박○○</td>
+                <td>2025-11-16</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 2) 판매 의뢰서 작성 -->
+      <div class="support-tab-panel" id="tab-sell">
+        <div class="support-card">
+          <h3>판매 의뢰서 작성</h3>
+          <p>보유 중인 호텔·모텔·펜션·빌딩 등의 매각 의사를 남겨주세요. 담당자가 별도 연락을 드립니다.</p>
+          <p class="support-hint">
+            * 필수 항목은 최소한으로 구성해두고, 추후 DB 설계에 맞춰 확장 예정입니다.
+          </p>
+
+          <form>
+            <div class="support-form-grid">
+              <div class="support-form-row">
+                <label class="support-form-label">의뢰인 이름</label>
+                <input type="text" class="support-form-input" placeholder="예: 김모텔" />
+              </div>
+              <div class="support-form-row">
+                <label class="support-form-label">연락처</label>
+                <input type="text" class="support-form-input" placeholder="예: 010-0000-0000" />
+              </div>
+
+              <div class="support-form-row">
+                <label class="support-form-label">매물 종류</label>
+                <select class="support-form-select">
+                  <option>호텔</option>
+                  <option>모텔</option>
+                  <option>펜션·풀빌라</option>
+                  <option>빌딩·상가</option>
+                  <option>시행부지</option>
+                  <option>기타 수익형 부동산</option>
+                </select>
+              </div>
+
+              <div class="support-form-row">
+                <label class="support-form-label">소재지 (시/군/구)</label>
+                <input type="text" class="support-form-input" placeholder="예: 강원도 평창군, 서울시 강남구" />
+              </div>
+
+              <div class="support-form-row">
+                <label class="support-form-label">희망 매각 금액 (대략)</label>
+                <input type="text" class="support-form-input" placeholder="예: 25억, 30~40억 등" />
+              </div>
+
+              <div class="support-form-row">
+                <label class="support-form-label">운영 형태</label>
+                <select class="support-form-select">
+                  <option>직영</option>
+                  <option>위탁운영</option>
+                  <option>미운영/공실</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="support-form-row" style="margin-top: 10px;">
+              <label class="support-form-label">추가 설명</label>
+              <textarea class="support-form-textarea" placeholder="객실 수, 리모델링 여부, 현재 매출, 매각 사유 등 자유롭게 작성해주세요."></textarea>
+            </div>
+
+            <div class="support-form-actions">
+              <button type="button" class="support-btn support-btn-subtle">초기화</button>
+              <button type="button" class="support-btn support-btn-primary">판매 의뢰 보내기 (예정)</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- 3) 구매 의뢰서 작성 -->
+      <div class="support-tab-panel" id="tab-buy">
+        <div class="support-card">
+          <h3>구매 의뢰서 작성</h3>
+          <p>원하시는 지역/규모/예산을 남겨주시면, 조건에 맞는 매물을 추천해드립니다.</p>
+
+          <form>
+            <div class="support-form-grid">
+              <div class="support-form-row">
+                <label class="support-form-label">의뢰인 이름</label>
+                <input type="text" class="support-form-input" placeholder="예: 이호텔" />
+              </div>
+              <div class="support-form-row">
+                <label class="support-form-label">연락처</label>
+                <input type="text" class="support-form-input" placeholder="예: 010-0000-0000" />
+              </div>
+
+              <div class="support-form-row">
+                <label class="support-form-label">관심 매물 종류</label>
+                <select class="support-form-select">
+                  <option>호텔·모텔</option>
+                  <option>펜션·풀빌라</option>
+                  <option>빌딩·상가</option>
+                  <option>시행부지</option>
+                  <option>기타 수익형 부동산</option>
+                </select>
+              </div>
+
+              <div class="support-form-row">
+                <label class="support-form-label">희망 지역</label>
+                <input type="text" class="support-form-input" placeholder="예: 서울 강남/서초, 강원 스키장 인근 등" />
+              </div>
+
+              <div class="support-form-row">
+                <label class="support-form-label">예산 (대략)</label>
+                <input type="text" class="support-form-input" placeholder="예: 20억 이하, 30~50억 등" />
+              </div>
+
+              <div class="support-form-row">
+                <label class="support-form-label">투자/운영 목적</label>
+                <select class="support-form-select">
+                  <option>직접 운영</option>
+                  <option>투자/수익형</option>
+                  <option>리모델링 후 매각</option>
+                  <option>기타</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="support-form-row" style="margin-top: 10px;">
+              <label class="support-form-label">추가 조건</label>
+              <textarea class="support-form-textarea" placeholder="객실 수, 필수 조건, 피하고 싶은 조건 등 자유롭게 작성해주세요."></textarea>
+            </div>
+
+            <div class="support-form-actions">
+              <button type="button" class="support-btn support-btn-subtle">초기화</button>
+              <button type="button" class="support-btn support-btn-primary">구매 의뢰 보내기 (예정)</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- 4) 전하고 싶은 소식 -->
+      <div class="support-tab-panel" id="tab-news">
+        <div class="support-card">
+          <h3>전하고 싶은 소식</h3>
+          <p class="support-broadcast-help">
+            서비스 이용 소감, 개선 요청, 파트너십 제안, 감사 인사 등 어떤 내용이든 편하게 남겨주세요.
+          </p>
+
+          <form>
+            <div class="support-form-row">
+              <label class="support-form-label">이름 또는 닉네임</label>
+              <input type="text" class="support-form-input" placeholder="예: 익명, 모텔코리아 팬" />
+            </div>
+
+            <div class="support-form-row" style="margin-top: 10px;">
+              <label class="support-form-label">전하고 싶은 내용</label>
+              <textarea class="support-form-textarea" placeholder="예: 사이트가 이런 기능이 있었으면 좋겠어요 / 이런 매물을 자주 보고 싶어요 등"></textarea>
+            </div>
+
+            <p class="support-hint">
+              * 현재는 실제 전송 없이 화면 설계만 되어 있습니다. 나중에 이메일/DB 연동 예정.
+            </p>
+
+            <div class="support-form-actions">
+              <button type="button" class="support-btn support-btn-primary">소식 남기기 (예정)</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    // 간단한 탭 전환 스크립트
+    (function () {
+      const tabButtons = document.querySelectorAll('.support-tab-btn');
+      const tabPanels  = document.querySelectorAll('.support-tab-panel');
+
+      tabButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const targetId = btn.getAttribute('data-target');
+          if (!targetId) return;
+
+          // 버튼 active 처리
+          tabButtons.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          // 패널 전환
+          tabPanels.forEach((panel) => {
+            if (panel.id === targetId) {
+              panel.classList.add('active');
+            } else {
+              panel.classList.remove('active');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

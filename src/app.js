@@ -24,8 +24,30 @@ app.get('/hotel', (req, res) => {
   
   // 펜션·풀빌라 리스트 페이지
   app.get('/pension', (req, res) => {
-    res.render('listings/pension-list');
+    res.render('listings/p-b-list');
   });
+
+  // 빌딩·상가 리스트 페이지
+  app.get('/building', (req, res) => {
+    res.render('listings/b-s-list');
+  });
+
+  // 시행부지 리스트 페이지
+  app.get('/site', (req, res) => {
+    res.render('listings/is-list');
+  });
+
+  // 기타 부동산 리스트 페이지
+  app.get('/etc', (req, res) => {
+    res.render('listings/etc-list');
+  });
+
+// 고객지원 (매물 의뢰목록, 판매서/구매서 작성, 전하고 싶은 소식)
+  app.get('/support', (req, res) => {
+    res.render('listings/support');
+  });
+  
+
 
   app.get('/detail/:id', (req, res) => {
     const id = req.params.id;
